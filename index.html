@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="style.css" /> <!-- main stylesheet -->
+	<link rel="stylesheet" href="layout.css" /> <!-- conditional css logic for layout -->
+	<script src="observe.js"></script>
+	<script src="sortable.js"></script>
+	<script src="main.js"></script> <!-- first set up the observer object -->
+	<script src="settings.js"></script> <!-- load from Localstorage and make settings object-->
+	<title>~</title>
+	<style id="styles"></style>
+</head>
+
+<body>
+	<div id="settings-screen-left" class="hidden">
+		<div id="layout-settings"></div>
+		<div id="setting-footer">
+			<button class="rb-button hook-save-btn">SAVE</button>
+			<span id="savedmsg" class="invis">Saved!</span>
+		</div>
+	</div>
+	<div id="settings-screen-right" class="hidden">
+		<div id="backup-screen">
+			<span id="backup-title-span"><h1 class="title setting-title">Backup</h1><!--<button class="rb-button smolbtn" id="backup-close">&times;</button>--></span>
+			
+			<p>Here you can import and export backups. They will get exported in json. Backups contain links and all settings.</p><br>
+			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button" id="import-json">import backup</button></span>
+			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button" id="export-json">export backup</button></span>
+		</div>
+		<div id="links-screen">
+			<div id="link-settings" draggable="false">
+				<span class="flex"><h1 class="setting-title" draggable="false">Links </h1>&nbsp;&nbsp;(drag & drop to reorder)&nbsp;&nbsp;(recommend. max 8/col)&nbsp;&nbsp;(hit save after)</span>
+				<div id="link-add-bar">
+					<form id="add-link">
+						<input type="text" class="rb-input" name="link-name" autocomplete="off" required placeholder="name" id="add-link-name">
+						<input type="text" class="rb-input" name="link-url" autocomplete="off" required placeholder="url" id="add-link-url">
+						<input type="submit" value="add link" class="rb-button">
+					</form>
+				</div>
+				<br>
+				<div id="sortable-colwrap" draggable="false">
+					<div class="sortable-col" draggable="false" id="sortable-col1"></div>
+					<div class="sortable-col" draggable="false" id="sortable-col2"></div>
+					<div class="sortable-col" draggable="false" id="sortable-col3"></div>
+				</div>
+				<ul class="normal-ul">
+					<li>if you want to edit a link, just rightclick on the main startpage links, copy link adress, remove old link and add new link</li>
+					<li>you can change the color theme in style.css</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="container" class="container cols-3 nogreeting">
+		<header>
+			<img src="img/background.png" id="main-img"/>
+		</header>
+		<div id="clock">
+			<span class="clockdigit">0</span>
+			<span class="clockdigit">1</span>
+			<span class="clockdigit">-</span>
+			<span class="clockdigit">0</span>
+			<span class="clockdigit">3</span>
+		</div>
+		<div class="search">
+			Search
+			<form method="get" target="_blank" name="search" action="https://duckduckgo.com/?q=">
+				<input type="text" autofocus="autofocus" name="q" autocomplete="off"/>
+			</form>
+		</div>
+		<div class="colwrap">
+			<h1 class="title greeting">heya <span class="accent">~</span> </h1>
+			<div class="col first-col" id="col-1">
+				<div class="title col1Title">google</div>
+				<!--add some sort of a placeholder here-->
+			</div>
+			<div class="col second-col" id="col-2">
+				<div class="title col2Title">social Media</div>
+				<!--add some sort of a placeholder here-->
+			</div>
+			<div class="col third-col" id="col-3">
+				<div class="title col3Title">others</div>
+				<!--add some sort of a placeholder here-->
+			</div>
+		</div>
+	</div>
+	<button class="toggle smolbtn" id="toggle" aria-label="toggle image">
+		&#9680;
+	</button>
+	<button class="settings smolbtn" id="settings" aria-label="open settings">
+		&#9881;
+	</button>
+	<img id="testimg" hidden>
+</body>
+
+</html>

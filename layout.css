@@ -1,0 +1,216 @@
+/* ui layout changes for .container 
+ .slim:					max width is now 32rem instaed of 40rem
+ .connect:				connects links together
+ .compact:				make links compact
+ .cols-2/.cols-3: show either 1,2,3 or just 1,2 columns
+ .verdana:				use verdana font
+
+ .nosearch:				hide search bar
+ .nopic:					hide pic
+ .notitle:				hide category titles
+ .nogreeting:			hide greeting
+
+ .leftpic:				put the pic to the left instead of top
+ 	.tallpic: 			pic will be yahallo (358*279.72px) tall and wide (only works with leftpic)
+*/
+
+/*slim*/
+/*.container.slim { --maxwidth: 32rem; }*/
+
+/*thicc*/
+/*.container.thicc { --maxwidth: 55rem; }*/
+
+/*thicc & slim - cancel each other out*/
+/*.container.thicc.slim { --maxwidth: 40rem; }*/
+
+/*connect*/
+.container.connect { --margin-col: 0px; }
+.container.connect .colwrap {
+	background-color: var(--main-card-background);
+	border-radius: var(--border-radius);
+	margin: var(--margin-row) var(--margin-col);
+}
+.container.connect.nogreeting:not(.leftpic) .first-col { border-top-left-radius: var(--border-radius); }
+.container.connect.nogreeting.cols-3 .third-col { border-top-right-radius: var(--border-radius) }
+.container.connect.nogreeting.cols-2 .second-col { border-top-right-radius: var(--border-radius) }
+
+.container.connect .col {
+	border-radius: 0;
+	background: transparent;
+}
+.container.connect .greeting {
+	background: transparent;
+	margin: 0.6rem 1rem;
+	padding: 0;
+}
+.container.connect.nogreeting:not(.notitle) .col,
+.container.connect:not(.nogreeting) .col { margin: 0 }
+.container.connect:not(.noclock) #clock { margin-right: calc(var(--margin-row) * 1.25); }
+
+/*compact*/
+.container.compact .col { align-content: start; } 
+
+/*cols-2 and cols-3 (cols-3 is default)*/
+.container.cols-2 .colwrap {
+	grid-template-areas:
+	"greeting greeting"
+	"col1 col2";
+	grid-template-columns: 1fr 1fr;
+}
+.container.cols-2 .col.third-col { display: none; }
+
+/* verdana */
+.container.verdana .links,
+.container.verdana .title,
+.container.verdana .search, 
+.container.verdana .search input {
+    font-family: Verdana,sans-serif;
+	font-size: 20px;
+	line-height: 1.5;
+}
+.container.verdana .links {
+	padding: 0;
+	/*margin: 0 0 0 1rem ;*/
+}
+.container.verdana .search, 
+.container.verdana .search input {
+    padding: 0.3rem 1rem;
+}
+.container.verdana .title {
+	padding: 0.3rem 1rem 0.3rem 0rem;
+}
+.container.verdana .title.greeting { padding-left: 1rem; }
+.container.verdana .search input {
+    margin: 0;
+    padding: 0.3rem;
+}
+.container.verdana h1,
+.container.verdana h1.title {
+	font-family: "Segoe UI",Arial,sans-serif;
+	font-size: 36px;
+    font-weight: 400;
+	color: var(--main-text-color-secondary);
+}
+.container.verdana:not(.leftpic) .col {
+	row-gap: calc( var(--margin-row) / 2);
+	padding: calc( var(--margin-row));
+}
+.container.verdana.leftpic:not(.connect) .col {
+	padding: 0 calc( var(--margin-row)) calc( var(--margin-row)) calc( var(--margin-row));
+}
+
+
+/*no search*/
+.container.nosearch .search { display: none; }
+
+/*no pic*/
+.container.nopic header { display: none; } 
+
+/*no title*/
+.container.notitle .col .title { display: none; }
+
+/*no greeting*/
+.container.nogreeting .greeting { display: none; } 
+
+/*no clock*/
+.container.noclock #clock { display: none; }
+
+/*leftpic*/
+.container.leftpic.nogreeting.nopic:not(.notitle) .first-col { border-top-left-radius: var(--border-radius); }
+.container.leftpic { /*by default 3 cols and search*/
+	grid-template-columns: min-content min-content 3fr;
+	grid-template-rows: min-content minmax(var(--min-pic-height-short), 1fr);
+
+	grid-template-areas: 
+	"search search search"
+	"clock header colwrap";
+
+	max-width: calc(var(--maxwidth) + var(--min-pic-width))
+}
+.container.leftpic header { 
+	max-width: var(--min-pic-width);
+	max-height: var(--min-pic-height);
+}
+.container.leftpic header img {
+	width: auto;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 0;
+
+	min-height: var(--min-pic-height);
+	max-width: var(--min-pic-width);
+}
+.container.leftpic:not(.noclock) #clock {
+	max-height: var(--min-pic-height-short);
+	height: auto;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+/*leftpic connect requires a wholeass separate category cause its actin up*/
+.container.leftpic.connect .colwrap,
+.container.leftpic.connect header {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	max-height: var(--min-pic-height-short);
+}
+/*add padding and margin to the greeting*/
+.container.leftpic.connect h1.title.greeting {
+	padding: calc( var(--spacer) / 2 ) var(--spacer) calc( var(--spacer) / 2 ) var(--spacer);
+	margin: var(--margin-row) var(--margin-col);
+}
+/*add padding to the columns*/
+.container.leftpic.connect .colwrap .col:first-of-type {
+	padding: 0 0 var(--spacer) var(--spacer);
+}
+.container.leftpic.connect .colwrap .col:last-of-type {
+	padding: 0 var(--spacer) var(--spacer) 0;
+}
+
+/*connected left pic - unround stuff*/
+.container.leftpic.connect header{
+	border-radius: var(--border-radius);
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.container.leftpic.connect .colwrap {
+	border-radius: var(--border-radius);
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+/* round the top right border when conencted and leftpic cause colwrap has margin */
+/*.container.leftpic.nogreeting .first-col { border-top-left-radius: var(--border-radius);}*/
+.container.leftpic.nogreeting.cols-3 .third-col { border-top-right-radius: var(--border-radius) }
+.container.leftpic.nogreeting.cols-2 .second-col { border-top-right-radius: var(--border-radius) }
+
+/*2 columns leftpic*/
+.container.leftpic.cols-2 { /*2 cols with search*/
+	grid-template-columns: min-content min-content 2fr;
+	grid-template-areas: 
+	"search search search"
+	"clock header colwrap";
+}
+
+/*lefpic nosearch*/
+.container.leftpic.nosearch {
+	grid-template-rows: minmax(var(--min-pic-height), 1fr);
+	grid-template-areas: 
+	"clock header colwrap";
+}
+
+/*leftpic but hidden*/
+.container.leftpic.nopic { max-width: var(--maxwidth); }
+.container.leftpic.nopic .colwrap { border-radius: var(--border-radius); }
+
+
+/*tallpic*/
+.container.tallpic {
+	--min-pic-height-short: var(--min-pic-height);
+}
+
+/*make titles fit in my layout*/
+.container.leftpic.tallpic.verdana.connect:not(.notitle) h1.title.greeting {
+	padding: calc( var(--spacer) * 0.6 ) var(--spacer) calc( var(--spacer) * 0.1 ) var(--spacer);
+	margin: 0 var(--margin-col);
+}
