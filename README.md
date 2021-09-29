@@ -24,6 +24,7 @@ you can also install this in firefox or any browser, just set the ``index.html``
 ### custom images
 if you want a custom image, put it in the ``img`` folder.
 the image should be either a standard portrait image (good for left image) or a wide slice/landscape image (good for top image).   
+
 After you put it in the img folder you can just change the image path in settings to the filename (don't add img/)
 
 ### thanks to:
@@ -33,4 +34,4 @@ After you put it in the img folder you can just change the image path in setting
 [object-observer](https://github.com/gullerya/object-observer/blob/main/src/object-observer.js) to automatically update layout when object changes - [repo](https://github.com/gullerya/object-observer)  
 [sortablejs](http://sortablejs.github.io/Sortable/Sortable.js) to enable drag and drop reordering of links - [repo](https://github.com/SortableJS/Sortable)    
   
-**commit history (before inital release here):** [commit history](https://github.com/KraXen72/startpage-new)  
+**commit history (before inital release here):** [commit history](https://github.com/KraXen72/startpage-new)
