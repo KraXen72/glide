@@ -155,7 +155,6 @@ class SettingElem {
         
         //console.log(`dry run: would update '${this.props.key}' to '${value}'`)
         if (callback === 'normal') {
-            //console.log(this.props, this.optType === 'Number')
             //update the main container object that is bound to layout
             if (this.optType !== '' && this.optType === 'Number') {
                 if (this.type === 'num') {
