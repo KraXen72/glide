@@ -18,6 +18,7 @@ const containerObj = {
     }, 
     m: { //misc
         incognito: false, //make buttons incognito
+        customfont: '',
         greeting: 'heya', //greeting and other texts
         col1Title: 'links',
         col2Title: 'social',
@@ -54,6 +55,7 @@ Container.observe(changes => {
                 let cl = [...containerElem.classList] //backup classlist
                 cl[1] = `cols-${change.value}`
                 containerElem.classList = cl.join(" ") //reconstruct classlists
+  
             } else if (key === "width") {
                 document.getElementById('styles').innerHTML = `:root{--maxwidth:${change.value || 40}rem;}`
             } else {
@@ -62,6 +64,19 @@ Container.observe(changes => {
                     containerElem.classList.add(key)
                 } else {
                     containerElem.classList.remove(key)
+                }
+
+                if (key === 'noclock') {
+                    // automatically try to add 8 rem to width when clock is enabled and substract 8 when it's disabled
+                    console.log(change.value)
+                    if (change.value === true) {
+                        Container.p.width -= 6
+                        if (Container.p.width < 33) {Container.p.width = 32}
+                    } else {
+                        Container.p.width += 6
+                        if (Container.p.width > 65) { Container.p.width = 65 }
+                    }
+                    document.querySelector("#settingElem-width .s-update").value = Container.p.width
                 }
 
                 //make tallpic not work when leftpic is off & update the checkboxes in settings
@@ -138,7 +153,7 @@ Container.observe(changes => {
     }
 }
 
-//TODO instangly update classlist from json, not through this for loop - save classList and Container separately
+//DONE instangly update classlist from json, not through this for loop - save classList and Container separately
 
 document.addEventListener('DOMContentLoaded', () => {
     toggle = document.getElementById('toggle');
@@ -267,6 +282,27 @@ function miscUpdate(what, value) {
         case "imgPath":
             let img = document.getElementById('main-img')
             checkAndApplyImg(`img/${value}`,img)
+        case "customfont":
+            //add some rules to apply the custom font
+            let ff =  `
+                @font-face {
+                    font-family: "Customfont";
+                    src: url('fonts/${value}') format('woff');
+                }
+                .container .links,
+                .container .title,
+                .container .search, 
+                .container .search input {
+                    font-family: Customfont,Verdana,sans-serif !important;
+                    font-size: 20px;
+                    line-height: 1.5;
+                }
+                `
+            if (value !== undefined && value !== '') {
+                document.getElementById("customfont").innerHTML = ff
+            } else {
+                document.getElementById("customfont").innerHTML = ''
+            }
         default:
             break;
     }

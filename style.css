@@ -139,6 +139,8 @@ body {
 .setting .setting-title {
   width: 100%;
   font-size: 1.20rem;
+  display: flex;
+  align-items:center;
 }
 .setting h1.setting-title {
   font-size: 1.70rem;
@@ -157,6 +159,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.setting .setting-desc.inline {
+  height: 100%;
+  max-height: 100%;
+  line-height: 100%;
+  margin: 0 0.5rem;
+  font-size: 1rem;
 }
 .impexp-span {
   width: 100%;

@@ -1,6 +1,6 @@
-//TODO update these settings' values when i load the json from localstorage (before generating load from localstorage)
+//DONE update these settings' values when i load the json from localstorage (before generating load from localstorage)
 const settings = {
-    s:[ //TODO change this to an array maybe??
+    s:[ //DONE change this to an array maybe??
         { title:"Settings",type:'heading',key:"settingTitle" },
         { title:`Connect columns`,desc:`connects link columns together`,type:'bool',key:'connect',classes:['connect',''] },
         { title:`Compact links`,desc:`make links not take up as much space`,type:'bool',key:'compact',classes:['compact',''] },
@@ -17,6 +17,7 @@ const settings = {
         { title:`Hide Greeting`,desc:'',key:'nogreeting',type:'bool',classes:['nogreeting',''] },
         { title:`Misc`,type:'heading',key:"miscTitle"},
         { title:`Make settings & toggle buttons incognito`,desc:'make the small settings & toggle buttons invisible & only appear on hover',key:'incognito',type:'bool',classes:['incognito',''], updateCallback: 'misc' },
+        { title:`Custom font:`,key:'customfont',type:'text',updateCallback: 'misc',value: '', desc:'place your custom font in /fonts. in format woff2. type the filename here. leave empty to reset.'},
         { title:`Greeting text:`,key:'greeting',type:'text',updateCallback: 'misc',value: 'heya'},
         { title:`1st column title:`,key:'col1Title',type:'text',updateCallback: 'misc', value: 'links' },
         { title:`2nd column title:`,key:'col2Title',type:'text',updateCallback: 'misc', value: 'social' },
@@ -116,7 +117,7 @@ class SettingElem {
                 this.optType = props.optType
                 break;
             case 'text':
-                this.HTML = `<span class="setting-title">${props.title}</span><span>
+                this.HTML = `<span class="setting-title">${props.title} ${!!props.desc && props.desc !== "" ? `<span class="setting-desc inline" title="${props.desc}">?</span>` : ''}</span><span>
                     <input type="text" class="rb-input s-update" name="${props.key}" autocomplete="off" value="${props.value}">
                 </span>
                 `
@@ -127,7 +128,7 @@ class SettingElem {
                 break;
             case 'num':
                     this.HTML = `<span class="setting-title">${props.title}</span><span>
-                    <input type="number" class="rb-input marright s-update" name="${props.key}" autocomplete="off" value="${props.value}" min="${props.min}" max="${props.max}">
+                        <input type="number" class="rb-input marright s-update" name="${props.key}" autocomplete="off" value="${props.value}" min="${props.min}" max="${props.max}">
                     </span>
                     `
                     if (!!props.desc && props.desc !== "") {
@@ -154,7 +155,7 @@ class SettingElem {
         
         //console.log(`dry run: would update '${this.props.key}' to '${value}'`)
         if (callback === 'normal') {
-            console.log(this.props, this.optType === 'Number')
+            //console.log(this.props, this.optType === 'Number')
             //update the main container object that is bound to layout
             if (this.optType !== '' && this.optType === 'Number') {
                 if (this.type === 'num') {
