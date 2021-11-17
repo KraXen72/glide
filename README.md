@@ -11,7 +11,7 @@
 - drag and drop link editor! visual settings!  
 - [rosebox](https://github.com/KraXen72/rosebox) color scheme & ability to customize color scheme  
 - saving to localstorage, importing and exporting of settings  
-- fast startup time *(looking at you, nightTab)*  
+- instant load/startup *(looking at you, nightTab)*  
 - click bottom right ◐ to toggle the visibility of the image  
 - click bottom left ⚙ to open the settings popup  
   
