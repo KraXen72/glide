@@ -14,7 +14,8 @@ const containerObj = {
         nogreeting: true, //.nogreeting:	hide greeting
         leftpic: false, //.leftpic: put the pic to the left instead of top
         tallpic: false, //.tallpic: pic will be yahallo (358*279.72px) tall and wide (only works with leftpic)
-        noclock: false //.clock show or hide side clock
+        noclock: false, //.clock show or hide side clock
+        nolinks: false //.nolinks: hide colwrap
     }, 
     m: { //misc
         incognito: false, //make buttons incognito

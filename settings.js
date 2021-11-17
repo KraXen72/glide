@@ -15,6 +15,7 @@ const settings = {
         { title:`Hide Image`,desc:'',type:'bool',key:'nopic',classes:['nopic',''] },
         { title:`Hide Title`,desc:'',key:'notitle',type:'bool',classes:['notitle',''] },
         { title:`Hide Greeting`,desc:'',key:'nogreeting',type:'bool',classes:['nogreeting',''] },
+        { title:`Hide Links (Experimental)`,desc:'Only looks good with &quot;Move Image to left&quot; on',type:'bool',key:'nolinks',classes:['nolinks',''] },
         { title:`Misc`,type:'heading',key:"miscTitle"},
         { title:`Make settings & toggle buttons incognito`,desc:'make the small settings & toggle buttons invisible & only appear on hover',key:'incognito',type:'bool',classes:['incognito',''], updateCallback: 'misc' },
         { title:`Custom font:`,key:'customfont',type:'text',updateCallback: 'misc',value: '', desc:'place your custom font in /fonts. in format woff2. type the filename here. leave empty to reset.'},
@@ -202,7 +203,6 @@ class SettingElem {
         return w //return the element
     }
 }
-
 /**
  * initialize settings elements. only call after DOM init. only call once.
  */
