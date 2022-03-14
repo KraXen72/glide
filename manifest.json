@@ -1,6 +1,6 @@
 {
   "chrome_url_overrides": {
-    "newtab": "index.html"
+    "newtab": "./index.html"
   },
   "description": "Overrides the browsers newtab page with a rosebox minimal-startpage.",
   "icons": {

@@ -103,6 +103,10 @@ body {
   right: 0; 
 }
 
+#settings, #toggle {
+  width: min-content;
+}
+
 #backup-title-span {
   display: flex;
   align-items: center;
