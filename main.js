@@ -347,13 +347,13 @@ function updateClock() {
     /*console.log("next in ms: ", diffTime)
     console.log(`now: ${time.toTimeString()} next: ${next.toTimeString()}`)*/
 
-
+    console.log(t)
     clock.innerHTML = `
-    <span class="clockdigit">${t[0].substr(0, 1)}</span>
-    <span class="clockdigit">${t[0].substr(1, 2)}</span>
+    <span class="clockdigit">${t[0][0]}</span>
+    <span class="clockdigit">${t[0][1]}</span>
     <span class="clockdigit">-</span>
-    <span class="clockdigit">${t[1].substr(0, 1)}</span>
-    <span class="clockdigit">${t[1].substr(1, 2)}</span>
+    <span class="clockdigit">${t[1][0]}</span>
+    <span class="clockdigit">${t[1][1]}</span>
     `
 
     setTimeout(updateClock,diffTime)
