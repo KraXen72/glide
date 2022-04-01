@@ -221,6 +221,17 @@ body {
 #link-add-bar {
   display: flex;
 }
+#add-link {
+  display: flex;
+  width: 100%;
+  column-gap: .5rem;
+}
+#add-link .rb-input {
+  width: 100%;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
 #savedmsg {
   float: right;
   color: gray;

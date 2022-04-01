@@ -134,10 +134,12 @@ Container.observe(changes => {
             target: '_self',//normal ? '_blank' : '_self',
             classList: "links",
             draggable: false,
+            normal: normal,
             innerHTML: `<span class="accent">${normal ? "~" : '&times;'}</span>
             <span class="link-text">${name}</span>`
         }
     }
+
     /**
      * get the link element
      */
@@ -150,7 +152,12 @@ Container.observe(changes => {
             }
         } //yeet the thing on span.accent onclick
 
+        if (!this.elemProps.normal) w.addEventListener("contextmenu", this.edit)
         return w
+    }
+
+    edit() {
+        console.log("ok")
     }
 }
 
