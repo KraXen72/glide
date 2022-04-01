@@ -142,17 +142,19 @@ Container.observe(changes => {
         this.w = document.createElement(this.elemStr)
         Object.assign(this.w, this.elemProps)
 
-        this.w.querySelector('span.accent').onclick = () => {
-            if (window.confirm(`Really delete '${this.elemProps.title}'?`)) {
-                this.w.remove()
-            }
-        }
         if (!this.elemProps.normal) {
-            this.w.addEventListener("contextmenu", (event) => {
+            this.w.querySelector('span.accent').onclick = () => {
+                if (window.confirm(`Really delete '${this.elemProps.title}'?`)) {
+                    this.w.remove()
+                }
+                
+            }
+            this.w.oncontextmenu = (event) => {
                 event.preventDefault()
                 this.edit(this)
-            })
+            }
         }
+        
     }
 
     /**

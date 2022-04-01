@@ -253,7 +253,10 @@ function initsettings() {
 
         addlink.querySelectorAll(`input.rb-input`).forEach(input => {input.value = ""}) //clear the values
 
-        link = new LinkElem(data["link-name"], data['link-url'], 'config')
+        let linkValid = new RegExp(/^(http|https):/, "g").test(data['link-url'])
+        if (!linkValid) { data['link-url'] = "https://" + data["link-url"] }
+
+        let link = new LinkElem(data["link-name"], data['link-url'], 'config')
         let fewestChildrenColumnSelector = getFewestChildren(['#sortable-col1','#sortable-col2','#sortable-col3'])
         console.log(fewestChildrenColumnSelector)
         document.querySelector(fewestChildrenColumnSelector).appendChild(link.elem)
