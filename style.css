@@ -133,6 +133,11 @@ body {
   bottom: 0.7rem;
   position: sticky;
 }
+.hook-close-btn, .hook-save-btn {
+  position: relative;
+  margin-left: .5rem;
+  padding: .5rem;
+}
 .setting:not(.heading) {
   width: 100%;
   display: flex;
@@ -222,7 +227,6 @@ body {
   display: flex;
 }
 #add-link {
-  display: flex;
   width: 100%;
   column-gap: .5rem;
 }
@@ -230,6 +234,16 @@ body {
   width: 100%;
   padding-top: .5rem;
   padding-bottom: .5rem;
+}
+.add-link-top-wrap {
+  display: flex;
+  width: 100%;
+  column-gap: .5rem;
+}
+.add-link-replace-text {
+  width: 100%;
+  max-width: max-content;
+  height: min-content;
 }
 
 #savedmsg {

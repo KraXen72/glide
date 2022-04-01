@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,25 +21,43 @@
 		<div id="layout-settings"></div>
 		<div id="setting-footer">
 			<button class="rb-button hook-save-btn">SAVE</button>
+			<button class="rb-button hook-close-btn">CLOSE</button>
 			<span id="savedmsg" class="invis">Saved!</span>
 		</div>
 	</div>
 	<div id="settings-screen-right" class="hidden">
 		<div id="backup-screen">
-			<span id="backup-title-span"><h1 class="title setting-title">Backup</h1><!--<button class="rb-button smolbtn" id="backup-close">&times;</button>--></span>
-			
-			<p>Here you can import and export backups. They will get exported in json. Backups contain links and all settings.</p><br>
-			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button" id="import-json">import backup</button></span>
-			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button" id="export-json">export backup</button></span>
+			<span id="backup-title-span">
+				<h1 class="title setting-title">Backup</h1>
+				<!--<button class="rb-button smolbtn" id="backup-close">&times;</button>-->
+			</span>
+
+			<p>Here you can import and export backups. They will get exported in json. Backups contain links and all
+				settings.</p><br>
+			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button"
+					id="import-json">import backup</button></span>
+			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button"
+					id="export-json">export backup</button></span>
 		</div>
 		<div id="links-screen">
 			<div id="link-settings" draggable="false">
-				<span class="flex"><h1 class="setting-title" draggable="false">Links </h1>&nbsp;&nbsp;(drag & drop to reorder)&nbsp;&nbsp;(recommend. max 8/col)&nbsp;&nbsp;(hit save after)</span>
+				<span class="flex">
+					<h1 class="setting-title" draggable="false">Links </h1>&nbsp;&nbsp;(drag & drop to reorder)&nbsp;&nbsp;(recommend. max 8/col)&nbsp;&nbsp;(hit save after)
+				</span>
 				<div id="link-add-bar">
 					<form id="add-link">
-						<input type="text" class="rb-input" name="link-name" autocomplete="off" required placeholder="name" id="add-link-name">
-						<input type="text" class="rb-input" name="link-url" autocomplete="off" required placeholder="url" id="add-link-url">
-						<input type="submit" value="add link" class="rb-button">
+						<span class="add-link-top-wrap">
+							<input type="text" class="rb-input" name="link-name" autocomplete="off" required placeholder="name" id="add-link-name">
+							<input type="text" class="rb-input" name="link-url" autocomplete="off" required placeholder="url" id="add-link-url">
+							<input type="submit" value="add link" class="rb-button">
+						</span>
+						<!-- <span class="add-link-replace-text setting">
+							<p class="setting-title">replace link if names are the same?</p>
+							<label class="switch">
+								<input class="s-update" type="checkbox" checked id="add-link-replace" name="link-replace-checkbox" />
+								<div class="slider round"></div>
+							</label>
+						</span> -->
 					</form>
 				</div>
 				<br>
@@ -56,7 +75,7 @@
 	</div>
 	<div id="container" class="container cols-3 nogreeting">
 		<header>
-			<img src="img/blank.png" id="main-img"/>
+			<img src="img/blank.png" id="main-img" />
 		</header>
 		<!-- <header id="shogiheader">
 			<img src="img/blank.png" id="shogi-img"/>
@@ -72,7 +91,7 @@
 		<div class="search">
 			Search
 			<form method="get" target="_blank" name="search" action="https://duckduckgo.com/?q=">
-				<input type="text" autofocus="autofocus" name="q" autocomplete="off"/>
+				<input type="text" autofocus="autofocus" name="q" autocomplete="off" />
 			</form>
 		</div>
 		<div class="colwrap">

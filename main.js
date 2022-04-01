@@ -138,39 +138,52 @@ Container.observe(changes => {
             innerHTML: `<span class="accent">${normal ? "~" : '&times;'}</span>
             <span class="link-text">${name}</span>`
         }
+
+        this.w = document.createElement(this.elemStr)
+        Object.assign(this.w, this.elemProps)
+
+        this.w.querySelector('span.accent').onclick = () => {
+            if (window.confirm(`Really delete '${this.elemProps.title}'?`)) {
+                this.w.remove()
+            }
+        }
+        if (!this.elemProps.normal) {
+            this.w.addEventListener("contextmenu", (event) => {
+                event.preventDefault()
+                this.edit(this)
+            })
+        }
     }
 
     /**
      * get the link element
      */
     get elem() {
-        let w = document.createElement(this.elemStr)
-        Object.assign(w, this.elemProps)
-        w.querySelector('span.accent').onclick = () => {
-            if (window.confirm(`Really delete '${this.elemProps.title}'?`)) {
-                w.remove()
-            }
-        } //yeet the thing on span.accent onclick
-
-        if (!this.elemProps.normal) w.addEventListener("contextmenu", this.edit)
-        return w
+        return this.w
     }
 
-    edit() {
-        console.log("ok")
+    edit(linkInstance) {
+        document.querySelector("#add-link-name").value = linkInstance.elemProps.title
+        document.querySelector("#add-link-url").value = linkInstance.elemProps.href
+        linkInstance.w.remove()
     }
 }
 
 //DONE instangly update classlist from json, not through this for loop - save classList and Container separately
 
 document.addEventListener('DOMContentLoaded', () => {
+    function showHideSettings() {
+        toggleElem('settings-screen-left');toggleElem('settings-screen-right');
+    }
+
     toggle = document.getElementById('toggle');
     settbtn = document.getElementById('settings');
 
     containerElem = document.getElementById('container')
 
     toggle.onclick = toggleImage
-    settbtn.onclick = () => {toggleElem('settings-screen-left'); toggleElem('settings-screen-right')}
+    settbtn.onclick = showHideSettings
+    document.querySelector(".hook-close-btn").onclick = showHideSettings
 
     let ls_classList = localStorage.getItem('classList')
 
@@ -204,8 +217,7 @@ function initlinks() {
         const key = Object.keys(db)[i];
         const val = db[key]
 
-        let link = ''
-        link = new LinkElem(val.name, val.url, mode)
+        let link = new LinkElem(val.name, val.url, mode)
         document.getElementById(id).appendChild(link.elem)
     }
 }
