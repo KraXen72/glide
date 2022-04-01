@@ -94,6 +94,7 @@ body {
   flex-direction: column;
 
   transition: all 1s ease-in-out;
+  z-index: 4;
 }
 #settings-screen-left #layout-settings {
   flex-grow: 1;

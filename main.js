@@ -304,7 +304,8 @@ function miscUpdate(what, value) {
             checkAndApplyImg(`img/${value}`,img)
         case "customfont":
             //add some rules to apply the custom font
-            let ff =  `
+            {
+                let ff =  `
                 @font-face {
                     font-family: "Customfont";
                     src: url('fonts/${value}') format('woff');
@@ -318,11 +319,13 @@ function miscUpdate(what, value) {
                     line-height: 1.5;
                 }
                 `
-            if (value !== undefined && value !== '') {
-                document.getElementById("customfont").innerHTML = ff
-            } else {
-                document.getElementById("customfont").innerHTML = ''
+                if (value !== undefined && value !== '') {
+                    document.getElementById("customfont").innerHTML = ff
+                } else {
+                    document.getElementById("customfont").innerHTML = ''
+                }
             }
+            break;
         default:
             break;
     }
