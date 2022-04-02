@@ -242,7 +242,7 @@ function initsettings() {
         })
         Sortables.push(sort)
     }
-
+    
     //add links submit form
     const addlink = document.getElementById('add-link')
     addlink.onsubmit = (event) => {
