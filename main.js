@@ -171,17 +171,49 @@ Container.observe(changes => {
     }
 }
 
-//DONE instangly update classlist from json, not through this for loop - save classList and Container separately
+// stuff that prevents the container from being initially rendered
+// container has a loadHide class that makes it invisible
+const loadConstraints = {
+    imageHasLoaded: Container.p.nopic ? true : false,
+    layoutHasApplied: false,
+
+    check: () => {
+        let passing = true
+        const constraints = Object
+            .entries(loadConstraints)
+            .filter(item => typeof item[1] === 'boolean')
+        
+        // loop through all the constriants and check if they are all completed
+        for (let i = 0; i < constraints.length; i++) {
+            const constraint = constraints[i];
+
+            if (constraint[1] === false) {
+                passing = false;
+                break;
+            }
+        }
+        //console.log("Checked load constraints", constraints, passing)
+        if (passing) containerElem.removeAttribute("style")
+    }
+}
+
+//DONE instantly update classlist from json, not through this for loop - save classList and Container separately
 
 document.addEventListener('DOMContentLoaded', () => {
     function showHideSettings() {
-        toggleElem('settings-screen-left');toggleElem('settings-screen-right');
+        toggleElem('settings-screen-left');
+        toggleElem('settings-screen-right');
     }
 
     toggle = document.getElementById('toggle');
     settbtn = document.getElementById('settings');
 
     containerElem = document.getElementById('container')
+
+    document.getElementById("main-img").onload = () => { 
+        loadConstraints.imageHasLoaded = true;
+        loadConstraints.check()
+    }
 
     toggle.onclick = toggleImage
     settbtn.onclick = showHideSettings
@@ -193,6 +225,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof ls_classList !== 'undefined' && ls_classList !==  null) {
         console.log("found data in localStorage, loading classList: ", ls_classList)
         containerElem.classList = ls_classList
+
+        loadConstraints.layoutHasApplied = true;
+        loadConstraints.check()
     }
 
     document.getElementById('styles').innerHTML = `:root{--maxwidth:${Container.p.width}rem;}`
