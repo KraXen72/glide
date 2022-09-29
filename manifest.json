@@ -6,7 +6,7 @@
   "icons": {
     "64": "img/icon64.png"
   },
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "minimal-startpage",
   "short_name": "minimal-startpage",
   "version": "2.0",
