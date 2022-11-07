@@ -23,7 +23,8 @@ const settings = {
         { title:`1st column title:`,key:'col1Title',type:'text',updateCallback: 'misc', value: 'links' },
         { title:`2nd column title:`,key:'col2Title',type:'text',updateCallback: 'misc', value: 'social' },
         { title:`3rd column title:`,key:'col3Title',type:'text',updateCallback: 'misc', value: 'other' },
-        { title:`image path:`,key:'imgPath',type:'text',updateCallback: 'misc', value: 'other' }
+        { title:`image path:`,key:'imgPath',type:'text',updateCallback: 'misc' },
+				{ title:`Minimal Clock`,desc:`Use a more minimal clock`,type:'bool',key:'inlineclock',classes:['inlineclock',''], updateCallback: 'misc' }
     ],
     l: { //links
         col1: [
