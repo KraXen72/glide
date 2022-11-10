@@ -149,9 +149,30 @@
 }
 
 /* greeting clock */
-.container:not(.noclock).greetclock #greeting-clock {
-	display: inline;
+#greeting-clock { display: none }
+.container.greetclock.cols-2 .colwrap {
+	grid-template-areas:
+	"greeting greetclock"
+	"col1 col2";
+	grid-template-columns: 1fr 1fr;
 }
+.container.greetclock.cols-3 .colwrap {
+	grid-template-areas:
+	"greeting greeting greetclock"
+	"col1 col2 col3";
+	grid-template-columns: 1fr 1fr 1fr;
+}
+.container.greetclock #greeting-clock {
+	display: inline-flex;
+	align-items: center;
+	justify-content: flex-end;
+	grid-area: greetclock;
+	text-align: right;
+	
+	font-size: 1.8rem;
+	color: #494949;
+}
+
 
 /*leftpic connect requires a wholeass separate category cause its actin up*/
 .container.leftpic.connect .colwrap,

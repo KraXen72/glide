@@ -429,7 +429,9 @@ function updateClock() {
 		<span class="clockdigit">-</span>
 		<span class="clockdigit">${t[1][0]}</span>
 		<span class="clockdigit">${t[1][1]}</span>
-		`
+	`
+	document.getElementById("greeting-clock").innerHTML =
+	`${t[0][0]}${t[0][1]}:${t[1][0]}${t[1][1]}`
 
 	setTimeout(updateClock, diffTime)
 }
