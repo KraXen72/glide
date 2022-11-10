@@ -29,6 +29,8 @@ After you put it in the img folder you can just change the image path in setting
 
 ### thanks to:
 [this startpage](https://github.com/WahyuHidayattz/startpage-new) for inspiration & original html/css boilerplate
+image `floccinauci.jpg` - album cover of Floccinaucinihilipilification (feat. Grim Salvo)
+** do not own most of the included images. I will provide credit/remove from the repo if requested.
   
 ### libraries used:  
 [object-observer](https://github.com/gullerya/object-observer/blob/main/src/object-observer.js) to automatically update layout when object changes - [repo](https://github.com/gullerya/object-observer)  
