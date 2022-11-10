@@ -7,7 +7,7 @@ const containerObj = {
 		compact: false, //.compact: make links compact
 		width: 40, //max container width. 32 - 65rem
 		cols: 3, //.cols-2 || .cols-3: show either 1,2,3 or just 1,2 columns
-		clocktype: "side",
+		clocktype: "noclock",
 		verdana: false, //.verdana: use verdana font
 		nosearch: false, //.nosearch: hide search bar
 		nopic: false, //.nopic: hide pic
@@ -15,7 +15,6 @@ const containerObj = {
 		nogreeting: true, //.nogreeting:	hide greeting
 		leftpic: false, //.leftpic: put the pic to the left instead of top
 		tallpic: false, //.tallpic: pic will be yahallo (358*279.72px) tall and wide (only works with leftpic)
-		noclock: false, //.clock show or hide side clock
 		nolinks: false, //.nolinks: hide colwrap
 	},
 	m: { //misc
@@ -50,7 +49,36 @@ Container.observe(changes => {
 
 		if (change.path[0] === "p") { //props changed
 			let key = change.path[1]
-			if (key === "cols") {
+			if (key === "clocktype") {
+
+				// sideclock vs noclock: 
+				// automatically try to add 8 rem to width when clock is enabled and substract 8 when it's disabled
+				if (change.value === "side") {
+					Container.p.width += 6
+					if (Container.p.width > 65) Container.p.width = 65
+				} else {
+					Container.p.width -= 6
+					if (Container.p.width < 33) Container.p.width = 32
+				}
+				document.querySelector("#settingElem-width .s-update").value = Container.p.width
+				const cl = containerElem.classList
+				switch (change.value) {
+					case "side":
+						cl.remove("noclock")
+						cl.remove("greetclock")
+						break;
+					case "greeting":
+						cl.add("noclock")
+						cl.add("greetclock")
+						break;
+					case "noclock":
+					default:
+						cl.add("noclock")
+						cl.remove("greetclock")
+						break;
+				}
+
+			} else if (key === "cols") {
 				//if its not 2 or 3 just dont change anything
 				change.value = [2, 3].includes(change.value) ? change.value : Container.p.cols
 
@@ -66,19 +94,6 @@ Container.observe(changes => {
 					containerElem.classList.add(key)
 				} else {
 					containerElem.classList.remove(key)
-				}
-
-				if (key === 'noclock') {
-					// automatically try to add 8 rem to width when clock is enabled and substract 8 when it's disabled
-					console.log(change.value)
-					if (change.value === true) {
-						Container.p.width -= 6
-						if (Container.p.width < 33) { Container.p.width = 32 }
-					} else {
-						Container.p.width += 6
-						if (Container.p.width > 65) { Container.p.width = 65 }
-					}
-					document.querySelector("#settingElem-width .s-update").value = Container.p.width
 				}
 
 				//make tallpic not work when leftpic is off & update the checkboxes in settings

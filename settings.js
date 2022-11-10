@@ -8,11 +8,10 @@ const settings = {
 		{ title: `Portrait left image`, desc: `(if Image is on the left) make the image portrait`, type: 'bool', key: 'tallpic', classes: ['tallpic', ''] },
 		{ title: `Container width (rem)`, desc: `set the container thickness. default is 40rem`, type: 'num', optType: 'Number', key: 'width', min: 32, max: 65 },
 		{ title: `Number of columns`, desc: `How many columns to show: either 2 or 3`, type: 'sel', optType: 'Number', opts: [3, 2], key: 'cols', classes: ['cols-3', 'cols-2'] },
-		{ title: `Clock style`, desc: `Which clock style to use: Side, Greeting`, type: 'sel', optType: 'String', opts: ["side", "greeting"], key: "clocktype", classes: ['sideclock', 'minimalclock'] },
+		{ title: `Clock style`, desc: `Which clock style to use: Hidden, Side, Greeting (needs visible title)`, type: 'sel', optType: 'String', opts: ["noclock", "side", "greeting"], key: "clocktype" },
 		{ title: `Use Verdana font`, desc: `Use Verdana font instead of Roboto`, type: 'bool', key: 'verdana', classes: ['verdana', ''] },
 		{ title: "Hiding elements", type: 'heading', key: "hidingTitle" },
 		{ title: `Hide Search`, desc: '', type: 'bool', key: 'nosearch', classes: ['nosearch', ''] },
-		{ title: `Hide Clock`, desc: '', type: 'bool', key: 'noclock', classes: ['noclock', ''] },
 		{ title: `Hide Image`, desc: '', type: 'bool', key: 'nopic', classes: ['nopic', ''] },
 		{ title: `Hide Title`, desc: '', key: 'notitle', type: 'bool', classes: ['notitle', ''] },
 		{ title: `Hide Greeting`, desc: '', key: 'nogreeting', type: 'bool', classes: ['nogreeting', ''] },
@@ -106,7 +105,7 @@ class SettingElem {
 			case 'sel':
 				let selectStyle = false
 				if (props.optType === "String") {
-					const longest = props.opts.reduce((p, c) => c.length > p ? c.length : p.length, Number.NEGATIVE_INFINITY)
+					const longest = props.opts.reduce((p, c) => c.length > p ? c.length : p, Number.NEGATIVE_INFINITY)
 					const FONT_SIZE_REM = 1
 					selectStyle = `style="width:${(longest * (FONT_SIZE_REM * 16))}px;left:initial;"`
 				}

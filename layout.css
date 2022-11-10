@@ -113,7 +113,8 @@
 .container.nogreeting .greeting { display: none; } 
 
 /*no clock*/
-.container.noclock #clock { display: none; }
+.container.noclock #clock,
+.container.noclock #greeting-clock { display: none; }
 
 /*leftpic*/
 .container.leftpic.nogreeting.nopic:not(.notitle) .first-col { border-top-left-radius: var(--border-radius); }
@@ -145,6 +146,11 @@
 	height: auto;
 	margin-top: 0;
 	margin-bottom: 0;
+}
+
+/* greeting clock */
+.container:not(.noclock).greetclock #greeting-clock {
+	display: inline;
 }
 
 /*leftpic connect requires a wholeass separate category cause its actin up*/
