@@ -7,6 +7,7 @@ const containerObj = {
 		compact: false, //.compact: make links compact
 		width: 40, //max container width. 32 - 65rem
 		cols: 3, //.cols-2 || .cols-3: show either 1,2,3 or just 1,2 columns
+		clocktype: "side",
 		verdana: false, //.verdana: use verdana font
 		nosearch: false, //.nosearch: hide search bar
 		nopic: false, //.nopic: hide pic
@@ -16,7 +17,6 @@ const containerObj = {
 		tallpic: false, //.tallpic: pic will be yahallo (358*279.72px) tall and wide (only works with leftpic)
 		noclock: false, //.clock show or hide side clock
 		nolinks: false, //.nolinks: hide colwrap
-		inlineclock: false // more inline clock
 	},
 	m: { //misc
 		incognito: false, //make buttons incognito
