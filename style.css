@@ -147,6 +147,10 @@ body {
   height: 30px;
   color: var(--main-text-color-secondary);
 }
+.setting.textarea {
+	height: min-content;
+	align-items: flex-start;
+}
 .setting .setting-title {
   width: 100%;
   font-size: 1.20rem;
@@ -482,6 +486,12 @@ select.s-update {
 
 .switch input[type="checkbox"] {
   display:none;
+}
+textarea {
+	resize: none;
+	min-height: 20px;
+	max-height: 150px;
+	overflow-y: auto;
 }
 .slider, select.s-update{
   background-color: var(--main-text-color-secondary);

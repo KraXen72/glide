@@ -23,7 +23,8 @@ const settings = {
 		{ title: `1st column title:`, key: 'col1Title', type: 'text', updateCallback: 'misc', value: 'links' },
 		{ title: `2nd column title:`, key: 'col2Title', type: 'text', updateCallback: 'misc', value: 'social' },
 		{ title: `3rd column title:`, key: 'col3Title', type: 'text', updateCallback: 'misc', value: 'other' },
-		{ title: `image path:`, key: 'imgPath', type: 'text', updateCallback: 'misc' }
+		{ title: `image path:`, key: 'imgPath', type: 'text', updateCallback: 'misc' },
+		{ title: `additional images (1 per line):`, key: 'imgGallery', type: 'textarea', updateCallback: 'misc', desc: "1 image per line. Each time an image will be randomly selected." }
 	],
 	l: { //links
 		col1: [
@@ -73,7 +74,7 @@ class SettingElem {
 		this.updateMethod = ''
 		/** @type {Object} save the props from constructor to this class (instance) */
 		this.props = props
-		/** @type {String} type of this settingElem, can be {'bool' | 'sel' | 'heading' | 'text' | 'num'} */
+		/** @type {String} type of this settingElem, can be {'bool' | 'sel' | 'heading' | 'text' |'textarea' | 'num'} */
 		this.type = props.type
 		/** @type {Boolean} if this setting actually changes something and can be updated. titles are immutable */
 		this.mutable = false
@@ -120,6 +121,17 @@ class SettingElem {
 				this.mutable = true
 				this.updateKey = `value`
 				this.updateMethod = 'onchange'
+				this.optType = props.optType
+				break;
+				
+			case 'textarea':
+				this.HTML = `<span class="setting-title" style="height: auto">${props.title} ${!!props.desc && props.desc !== "" ? `<span class="setting-desc inline" title="${props.desc}">?</span>` : ''}</span><span>
+                    <textarea class="rb-input s-update" name="${props.key}" autocomplete="off">${props.value ?? ""}</textarea>
+                </span>
+                `
+				this.mutable = true
+				this.updateKey = `value`
+				this.updateMethod = `oninput`
 				this.optType = props.optType
 				break;
 			case 'text':
@@ -231,6 +243,19 @@ function initsettings() {
 
 		let set = new SettingElem(val)
 		document.getElementById("layout-settings").appendChild(set.elem)
+	}
+
+	// autoresize textareas
+	const tx = document.getElementsByTagName("textarea");
+	const tx_updateFunc = (elem) => {
+			elem.style.height = 0;
+			elem.style.height = (elem.scrollHeight) + "px";
+	}
+	for (let i = 0; i < tx.length; i++) {
+		tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+		tx[i].addEventListener("input", () => tx_updateFunc(tx[i]), false);
+		tx[i].addEventListener("focus", () => tx_updateFunc(tx[i]), false);
+		console.log(tx[i], tx[i].scrollHeight)
 	}
 
 	//generate sortable links

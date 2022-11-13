@@ -25,10 +25,15 @@ const containerObj = {
 		col2Title: 'social',
 		col3Title: 'other',
 		imgPath: 'background.png', //image path
+		imgGallery: ""
 	}
 }
 
 let ls_containerObj = localStorage.getItem('Container')
+
+function randomNumberBetween(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) + min)
+}
 
 //this will only update settings
 if (typeof ls_containerObj !== 'undefined' && ls_containerObj !== null) {
@@ -37,7 +42,6 @@ if (typeof ls_containerObj !== 'undefined' && ls_containerObj !== null) {
 	console.log(parsed)
 	Object.assign(containerObj, parsed) //update the current container object with the one from localstorage
 }
-
 /**
 * Container is the main object for layout; if you change its props, the layout instantly updates.
 */
@@ -354,7 +358,19 @@ function miscUpdate(what, value) {
 			break;
 		case "imgPath":
 			let img = document.getElementById('main-img')
-			checkAndApplyImg(`img/${value}`, img)
+			if (Container.m.imgGallery && Container.m.imgGallery !== "") {
+				const items = Container.m.imgGallery.split("\n")
+				if (items.length > 0) {
+					items.push(value)
+					const index = randomNumberBetween(0, items.length - 1)
+					checkAndApplyImg(`img/${items[index]}`, img)
+				} else {
+					checkAndApplyImg(`img/${value}`, img)
+				}
+			} else {
+				checkAndApplyImg(`img/${value}`, img)
+			}
+			
 		case "customfont":
 			//add some rules to apply the custom font
 			{

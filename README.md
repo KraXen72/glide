@@ -30,6 +30,7 @@ After you put it in the img folder you can just change the image path in setting
 ### thanks to:
 [this startpage](https://github.com/WahyuHidayattz/startpage-new) for inspiration & original html/css boilerplate
 image `floccinauci.jpg` - album cover of Floccinaucinihilipilification (feat. Grim Salvo)
+images/reze screenshots from chainsawman, (lightly - heavily edited by me) found online
 ** do not own most of the included images. I will provide credit/remove from the repo if requested.
   
 ### libraries used:  
