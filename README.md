@@ -8,7 +8,8 @@
 # features:
 - fully modular layout! combine options to create your own unique startpage layout!  
 - 2/3 columns, search, image, clock, category labels, greeting  
-- drag and drop link editor! visual settings!  
+- drag and drop link editor! visual settings!
+- image carousel option  
 - [rosebox](https://github.com/KraXen72/rosebox) color scheme & ability to customize color scheme  
 - saving to localstorage, importing and exporting of settings  
 - instant load/startup *(looking at you, nightTab)*  
