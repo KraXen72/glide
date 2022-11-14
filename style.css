@@ -150,6 +150,7 @@ body {
 .setting.textarea {
 	height: min-content;
 	align-items: flex-start;
+	min-width: 169px; 
 }
 .setting .setting-title {
   width: 100%;
