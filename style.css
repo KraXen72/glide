@@ -535,6 +535,7 @@ input:checked + .slider:before { transform: translateX(calc(26px * 0.7))}
   border-color: var(--main-accent);
   border-radius: calc(var(--border-radius) / 2);
   border-style: solid;
+  border-width: 2px;
   color: #a3a5aa
 }
 
