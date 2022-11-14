@@ -308,6 +308,7 @@ header img {
   object-fit: cover;
   object-position: 0 -40px;
   user-select: none;
+  -webkit-user-drag: none;
 
   /*grid-area: 1 / 1 / 2 / 2;*/
 }
@@ -493,6 +494,7 @@ textarea {
 	min-height: 20px;
 	max-height: 150px;
 	overflow-y: auto;
+	width: 169px;
 }
 .slider, select.s-update{
   background-color: var(--main-text-color-secondary);
