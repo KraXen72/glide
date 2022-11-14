@@ -33,7 +33,7 @@ After you put it in the img folder you can just change the image path in setting
 - [this startpage](https://github.com/WahyuHidayattz/startpage-new) for inspiration & original html/css boilerplate  
 - image `floccinauci.jpg` - album cover of Floccinaucinihilipilification (feat. Grim Salvo)  
 - images/reze screenshots from chainsawman, (lightly - heavily edited by me) found online  
-- **i do not own most of the included images. I will provide credit/remove from the repo if requested.*
+- **i do not own most of the included images. I will provide credit/remove from the repo if requested.**
   
 ### libraries used:  
 [object-observer](https://github.com/gullerya/object-observer/blob/main/src/object-observer.js) to automatically update layout when object changes - [repo](https://github.com/gullerya/object-observer)  
