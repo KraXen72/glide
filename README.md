@@ -27,7 +27,7 @@ if you want a custom image, put it in the ``img`` folder.
 the image should be either a standard portrait image (good for left image) or a wide slice/landscape image (good for top image).   
 
 After you put it in the img folder you can just change the image path in settings to the filename (don't add img/)
-- custom css: you can edit `custom.css` to apply custom css (wow, unheard of)
+- custom css: you can create a `custom.css` to apply custom css (wow, unheard of)
 
 ### thanks to:
 - [this startpage](https://github.com/WahyuHidayattz/startpage-new) for inspiration & original html/css boilerplate  

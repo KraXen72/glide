@@ -35,10 +35,8 @@
 
 			<p>Here you can import and export backups. They will get exported in json. Backups contain links and all
 				settings.</p><br>
-			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button"
-					id="import-json">import backup</button></span>
-			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button"
-					id="export-json">export backup</button></span>
+			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button" id="import-json">import backup</button></span>
+			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button" id="export-json">export backup</button></span>
 		</div>
 		<div id="links-screen">
 			<div id="link-settings" draggable="false">
@@ -72,11 +70,17 @@
 					<li>you can change the color theme in style.css</li>
 				</ul>
 			</div>
+			<details>
+				<summary>Custom CSS</summary>
+				<p>you can create a 'custom.css' file in extension's root folder to further specify css for your startpage if these options are not enough</p>
+				<p>this file will only update on refresh, not instanly.</p>
+				<p>the css rules in this file are not reflected in the settings, so if something is broken, you might've left some css in 'custom.css'</p>
+			</details>
 		</div>
 	</div>
 	<div id="container" class="container cols-3 nogreeting" style="opacity: 0">
 		<header>
-			<img src="img/blank.png" id="main-img" draggable="false"/>
+			<img src="img/blank.png" id="main-img" draggable="false" />
 		</header>
 		<!-- <header id="shogiheader">
 			<img src="img/blank.png" id="shogi-img"/>

@@ -103,6 +103,10 @@ body {
 #settings-screen-right {
   left: initial;
   right: 0; 
+} 
+#settings-screen-left summary {
+	font-weight: 800;
+	font-size: medium;
 }
 
 #settings, #toggle {
