@@ -5,7 +5,7 @@ const settings = {
 		{ title: `Connect columns`, desc: `connects link columns together`, type: 'bool', key: 'connect', classes: ['connect', ''] },
 		{ title: `Compact links`, desc: `make links not take up as much space`, type: 'bool', key: 'compact', classes: ['compact', ''] },
 		{ title: `Move Image to left`, desc: `Move image to left instead of top.`, type: 'bool', key: 'leftpic', classes: ['leftpic', ''] },
-		{ title: `Portrait left image`, desc: `(if Image is on the left) make the image portrait`, type: 'bool', key: 'tallpic', classes: ['tallpic', ''] },
+		{ title: `Portrait left image`, desc: `force (358*279.72px) image aspect ratio, good for manga/movie cover`, type: 'bool', key: 'tallpic', classes: ['tallpic', ''] },
 		{ title: `Container width (rem)`, desc: `set the container thickness. default is 40rem`, type: 'num', optType: 'Number', key: 'width', min: 32, max: 65 },
 		{ title: `Number of columns`, desc: `How many columns to show: either 2 or 3`, type: 'sel', optType: 'Number', opts: [3, 2], key: 'cols', classes: ['cols-3', 'cols-2'] },
 		{ title: `Clock style`, desc: `Which clock style to use: Hidden, Side, Greeting (needs visible title)`, type: 'sel', optType: 'String', opts: ["noclock", "side", "greeting"], key: "clocktype" },
