@@ -369,6 +369,7 @@ function miscUpdate(what, value, genuine = true) {
 					// ensure uniqueness each time by remembering last image
 					if (typeof ls_lastImg !== 'undefined' && ls_lastImg !== null) items = items.filter(img => img !== ls_lastImg)
 					const index = randomNumberBetween(0, items.length - 1)
+					localStorage.setItem("lastimg", items[index] )
 					checkAndApplyImg(`img/${items[index]}`, img)
 				} else {
 					checkAndApplyImg(`img/${value}`, img)
