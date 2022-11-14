@@ -30,6 +30,7 @@ const containerObj = {
 }
 
 let ls_containerObj = localStorage.getItem('Container')
+let ls_lastImg = null
 
 function randomNumberBetween(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min)
@@ -240,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.querySelector(".hook-close-btn").onclick = showHideSettings
 
 	let ls_classList = localStorage.getItem('classList')
+	ls_lastImg = localStorage.getItem('lastimg')
 
 	//this will only update settings
 	if (typeof ls_classList !== 'undefined' && ls_classList !== null) {
@@ -254,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	updateClock()
 	initlinks()
 	initsettings()
-	Object.keys(Container.m).forEach(key => { miscUpdate(key, Container.m[key]) }) //this should reflect the values from settings
+	Object.keys(Container.m).forEach(key => { miscUpdate(key, Container.m[key], false) }) //this should reflect the values from settings
 })
 
 function initlinks() {
@@ -334,10 +336,11 @@ function blinkElem(query, dec) {
 
 /**
  * add functionality to the misc settings
- * @param {String} what 'incognito'
- * @param {String | Boolean} value the new value
+ * @param {string} what 'incognito'
+ * @param {string | boolean} value the new value
+ * @param {boolean} genuine if the value is coming from settings (default;true), or restoring from localStorage (false)
  */
-function miscUpdate(what, value) {
+function miscUpdate(what, value, genuine = true) {
 	switch (what) {
 		case "incognito":
 			[...document.querySelectorAll(".settings.smolbtn, .toggle.smolbtn")].forEach(smolbtn => {
@@ -358,10 +361,13 @@ function miscUpdate(what, value) {
 			break;
 		case "imgPath":
 			let img = document.getElementById('main-img')
-			if (Container.m.imgGallery && Container.m.imgGallery !== "") {
-				const items = Container.m.imgGallery.split("\n")
+			// TODO restore unique logic from stash
+			if (Container.m.imgGallery && Container.m.imgGallery !== "" && !genuine) {
+				let items = Container.m.imgGallery.split("\n")
 				if (items.length > 0) {
-					items.push(value)
+					items.push(value) // add the imgPath to the pool
+					// ensure uniqueness each time by remembering last image
+					if (typeof ls_lastImg !== 'undefined' && ls_lastImg !== null) items = items.filter(img => img !== ls_lastImg)
 					const index = randomNumberBetween(0, items.length - 1)
 					checkAndApplyImg(`img/${items[index]}`, img)
 				} else {
