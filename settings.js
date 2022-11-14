@@ -146,7 +146,7 @@ class SettingElem {
 				break;
 			case 'num':
 				this.HTML = `<span class="setting-title">${props.title}</span><span>
-                        <input type="number" class="rb-input marright s-update" name="${props.key}" autocomplete="off" value="${props.value}" min="${props.min}" max="${props.max}">
+                        <input type="number" class="rb-input marright s-update" name="${props.key}" autocomplete="off" value="${props.value}" min="${props.min ?? -1}" max="${props.max ?? 1000}">
                     </span>
                     `
 				if (!!props.desc && props.desc !== "") {
