@@ -64,18 +64,11 @@ body {
 	overflow-x: hidden;
 }
 
-/** {
-	box-sizing: border-box;
-}*/
 .hidden {
 	display: none !important;
 }
 .loadHide {
 	opacity: 0 !important;
-}
-.flex {
-	display: flex;
-	align-items: center;
 }
 .marright {
 	margin-right: 7px;
@@ -83,6 +76,11 @@ body {
 .normal-ul {
 	padding-inline-start: 1.2rem;
 }
+.flex {
+	display: flex;
+	align-items: center;
+}
+
 
 /*settings*/
 #settings-screen-left,
