@@ -82,6 +82,7 @@ body {
 }
 
 
+
 /*settings*/
 #settings-screen-left,
 #settings-screen-right {
@@ -378,26 +379,39 @@ header img {
 	border-radius: var(--border-radius);
 	overflow: hidden;
 	border: var(--border-size) solid var(--main-background);
+
+	display: inline-flex;
+	align-items: center;
+	width: auto;
 }
 .search input {
 	background: none;
 	display: inline;
 	border: none;
-	color: var(--green);
+	color: var(--main-accent);
 	margin: 0 1rem;
 	font-size: 1rem;
+	width: 100%;
 }
 .search:hover {
 	border: var(--border-size) solid var(--green);
 }
 .search form {
 	display: inline;
+	width: 100%;
 }
 .search input:focus {
 	outline: none;
 }
 .search input[type="text"] {
-	width: 80%;
+	width: 100%;
+}
+.search-span {
+	color: var(--main-text-color-secondary);
+	display: inline-flex;
+	align-items: center;
+	height: 100%;
+	margin-right: 0.25rem;
 }
 
 /* greeting */

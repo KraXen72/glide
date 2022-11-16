@@ -214,7 +214,8 @@
 
 /*2 columns leftpic*/
 .container.leftpic.cols-2 { /*2 cols with search*/
-	grid-template-columns: min-content min-content 2fr;
+	grid-template-columns: min-content min-content var(--grid-colwrap-width, 2fr);
+	/* grid-template-columns: repeat(2, min-content) fit-content; */
 	grid-template-areas: 
 	"search search search"
 	"clock header colwrap";
