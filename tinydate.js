@@ -1,19 +1,12 @@
 // modified version of https://github.com/lukeed/tinydate
 var RGX = /([^{]*?)\w(?=\})/g;
-
-// added these constants
-const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-const WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-
-// abstracted methods that are used multiple times
-const getMonthNameByIndex = (index) => MONTHS[index]
-const getWeekdayNameByIndex = (index) => WEEKDAYS[index]
+const DATE_LOCALE = 'en-US'
 
 const YY = (d) => d.getFullYear().toString()
-const Mn = (d) => getMonthNameByIndex(d.getMonth())
-const mn = (d) => Mn(d).slice(0, 3)
-const Wn = (d) => getWeekdayNameByIndex(d.getDay()-1)
-const wn = (d) => Wn(d).slice(0, 3)
+const Mn = (d) => d.toLocaleDateString(DATE_LOCALE, { month: 'long' })
+const mn = (d) => d.toLocaleDateString('en-US', { month: 'short' })
+const Wn = (d) => d.toLocaleDateString('en-US', { weekday: 'long' })
+const wn = (d) => d.toLocaleDateString('en-US', { weekday: 'short' })
 
 // custom map: remove time stuff, add more date stuff
 var MAP = {

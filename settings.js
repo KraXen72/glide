@@ -74,7 +74,7 @@ class SettingElem {
 		this.updateMethod = ''
 		/** @type {Object} save the props from constructor to this class (instance) */
 		this.props = props
-		/** @type {String} type of this settingElem, can be {'bool' | 'sel' | 'heading' | 'text' |'textarea' | 'num'} */
+		/** @type {'bool' | 'sel' | 'heading' | 'text' |'textarea' | 'num' | 'autocomp'} type of this settingElem */
 		this.type = props.type
 		/** @type {Boolean} if this setting actually changes something and can be updated. titles are immutable */
 		this.mutable = false
