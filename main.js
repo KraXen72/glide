@@ -100,7 +100,7 @@ Container.observe(changes => {
 
 				let _cl = [...containerElem.classList] //backup classlist
 				_cl[1] = `cols-${change.value}`
-				cl = _cl.join(" ") //reconstruct classlists
+				containerElem.classList = _cl.join(" ") //reconstruct classlists
 
 			} else if (key === "width") {
 				document.getElementById('styles').innerHTML = `:root{--maxwidth:${change.value || 40}rem;}`
@@ -372,13 +372,12 @@ function miscUpdate(what, value, genuine = true) {
 			break;
 		case "imgPath":
 			let img = document.getElementById('main-img')
-			// TODO restore unique logic from stash
 			if (Container.m.imgGallery && Container.m.imgGallery !== "" && !genuine) {
 				let items = Container.m.imgGallery.split("\n")
 				if (items.length > 0) {
 					items.push(value) // add the imgPath to the pool
 					// ensure uniqueness each time by remembering last image
-					if (typeof ls_lastImg !== 'undefined' && ls_lastImg !== null) items = items.filter(img => img !== ls_lastImg)
+					if (ls_lastImg && ls_lastImg !== null) items = items.filter(img => img !== ls_lastImg)
 					const index = randomNumberBetween(0, items.length - 1)
 					localStorage.setItem("lastimg", items[index] )
 					checkAndApplyImg(`img/${items[index]}`, img)
