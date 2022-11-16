@@ -7,12 +7,13 @@ const containerObj = {
 		compact: false, //.compact: make links compact
 		width: 40, //max container width. 32 - 65rem
 		cols: 3, //.cols-2 || .cols-3: show either 1,2,3 or just 1,2 columns
+		greetingtype: 'greeting', // greeting, nogreeting, greeting+date
+		dateformat: '{wn}, {mm}. {Mn}', // default date format
 		clocktype: "noclock",
 		verdana: false, //.verdana: use verdana font
 		nosearch: false, //.nosearch: hide search bar
 		nopic: false, //.nopic: hide pic
 		notitle: false, //.notitle: hide category titles
-		nogreeting: true, //.nogreeting:	hide greeting
 		leftpic: false, //.leftpic: put the pic to the left instead of top
 		tallpic: false, //.tallpic: pic will be yahallo (358*279.72px) tall and wide (only works with leftpic)
 		nolinks: false, //.nolinks: hide colwrap

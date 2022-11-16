@@ -8,8 +8,9 @@ const settings = {
 		{ title: `Portrait left image`, desc: `force (358*279.72px) image aspect ratio, good for manga/movie cover`, type: 'bool', key: 'tallpic', classes: ['tallpic', ''] },
 		{ title: `Container width (rem)`, desc: `set the container thickness. default is 40rem`, type: 'num', optType: 'Number', key: 'width', min: 32, max: 65 },
 		{ title: `Number of columns`, desc: `How many columns to show: either 2 or 3`, type: 'sel', optType: 'Number', opts: [3, 2], key: 'cols', classes: ['cols-3', 'cols-2'] },
-		{ title: `Greeting style`, desc: '', key: 'greetingtype', type: 'sel', opts: ['nogreeting', 'greeting', 'greeting+date'], optType: 'String', desc: "what type of greeting to use (or none)" },
 		{ title: `Clock style`, desc: `Which clock style to use: Hidden, Side, Greeting (needs visible title)`, type: 'sel', optType: 'String', opts: ["noclock", "side", "greeting"], key: "clocktype" },
+		{ title: `Greeting style`, desc: '', key: 'greetingtype', type: 'sel', opts: ['nogreeting', 'greeting', 'greeting+date'], optType: 'String', desc: "what type of greeting to use (or none)" },
+		{ title: `Date format`, key: 'dateformat', desc: 'date format to use. Check right setting pane for help.', type: 'autocomp', opts: ['{wn}, {mm}. {Mn}', '{_wn}, {dd}.{mm}', '{Wn}, {mm}/{dd}/{YY}', '{Wn}']},
 		{ title: `Use Verdana font`, desc: `Use Verdana font instead of Roboto`, type: 'bool', key: 'verdana', classes: ['verdana', ''] },
 		{ title: "Hiding elements", type: 'heading', key: "hidingTitle" },
 		{ title: `Hide Search`, desc: '', type: 'bool', key: 'nosearch', classes: ['nosearch', ''] },
@@ -85,16 +86,16 @@ class SettingElem {
 		/** @type {Function | 'misc' | 'normal'} custom callback for update function. 'misc' is for misc settings if nothing then default is 'normal' */
 		this.updateCallback = props.updateCallback || 'normal'
 
+		const descElem = (cls = "") => (!!props.desc && props.desc !== "") ? `<span class="setting-desc ${cls}" title="${props.desc}">?</span>` : ""
+		const inlineDescElem = () => descElem("inline")
+
 		switch (props.type) {
 			case 'bool':
 				this.HTML = `<span class="setting-title" title="${props.desc}">${props.title}</span> 
                 <label class="switch">
                     <input class="s-update" type="checkbox" ${props.value ? "checked" : ""}/>
                     <div class="slider round"></div>
-                </label>`
-				if (!!props.desc && props.desc !== "") {
-					this.HTML += `<span class="setting-desc" title="${props.desc}">?</span>`
-				}
+                </label>${descElem()}`
 				this.mutable = true
 				this.updateKey = `checked`
 				this.updateMethod = 'onchange'
@@ -111,47 +112,43 @@ class SettingElem {
 					selectStyle = `style="width:${(longest * (FONT_SIZE_REM * 16))}px;left:initial;"`
 				}
 				this.HTML = `<span class="setting-title" title="${props.desc}">${props.title}</span> 
-                <label class="switch">
-                    <select class="s-update" ${selectStyle ? selectStyle : ""}>${props.opts.map(o => `<option value ="${o}">${o}</option>`).join("") /* create option tags*/
-					}</select>
-                </label>`
-				if (!!props.desc && props.desc !== "") {
-					this.HTML += `<span class="setting-desc" title="${props.desc}">?</span>`
-				}
+        						<label class="switch">
+										<select class="s-update" ${selectStyle ? selectStyle : ""}>${props.opts.map(o => `<option value ="${o}">${o}</option>`).join("")}</select>
+										</label>${descElem()}`
+				this.HTML += 
 				this.mutable = true
 				this.updateKey = `value`
 				this.updateMethod = 'onchange'
 				this.optType = props.optType
 				break;
-				
 			case 'textarea':
-				this.HTML = `<span class="setting-title" style="height: auto">${props.title} ${!!props.desc && props.desc !== "" ? `<span class="setting-desc inline" title="${props.desc}">?</span>` : ''}</span><span>
-                    <textarea class="rb-input s-update" name="${props.key}" autocomplete="off">${props.value ?? ""}</textarea>
-                </span>
-                `
+				this.HTML = `<span class="setting-title" style="height: auto">${props.title}${inlineDescElem()}</span>
+				<span><textarea class="rb-input s-update" name="${props.key}" autocomplete="off">${props.value ?? ""}</textarea></span>`
 				this.mutable = true
 				this.updateKey = `value`
 				this.updateMethod = `oninput`
 				this.optType = props.optType
 				break;
 			case 'text':
-				this.HTML = `<span class="setting-title">${props.title} ${!!props.desc && props.desc !== "" ? `<span class="setting-desc inline" title="${props.desc}">?</span>` : ''}</span><span>
-                    <input type="text" class="rb-input s-update" name="${props.key}" autocomplete="off" value="${props.value}">
-                </span>
-                `
+				this.HTML = `<span class="setting-title">${props.title} ${inlineDescElem()}</span>
+				<span> <input type="text" class="rb-input s-update" name="${props.key}" autocomplete="off" value="${props.value}"> </span>`
 				this.mutable = true
 				this.updateKey = `value`
 				this.updateMethod = `oninput`
 				this.optType = props.optType
 				break;
+			case 'autocomp':
+				this.HTML = `<span class="setting-title">${props.title} ${inlineDescElem()}</span>
+				<span><input type="text" class="rb-input s-update" name="${props.key}" autocomplete value="${props.value}" list="datalist-${props.title}">
+				<datalist id="datalist-${props.title}">${props.opts.map(o => `<option value ="${o}">${o}</option>`).join("")}</datalist></span>`
+				this.mutable = true
+				this.updateKey = `value`
+				this.updateMethod = `oninput`
+				this.optType = 'String'
+				break;
 			case 'num':
-				this.HTML = `<span class="setting-title">${props.title}</span><span>
-                        <input type="number" class="rb-input marright s-update" name="${props.key}" autocomplete="off" value="${props.value}" min="${props.min ?? -1}" max="${props.max ?? 1000}">
-                    </span>
-                    `
-				if (!!props.desc && props.desc !== "") {
-					this.HTML += `<span class="setting-desc" title="${props.desc}">?</span>`
-				}
+				this.HTML = `<span class="setting-title">${props.title}</span>
+				<span><input type="number" class="rb-input marright s-update" name="${props.key}" autocomplete="off" value="${props.value}" min="${props.min ?? -1}" max="${props.max ?? 1000}"></span>${descElem()}`
 				this.mutable = true
 				this.updateKey = `value`
 				this.updateMethod = `onchange`
@@ -225,14 +222,15 @@ class SettingElem {
  */
 function initsettings() {
 	//add value key to all settings from the container (after container is initialized)
+	
 	for (let i = 0; i < settings.s.length; i++) {
 		const setting = settings.s[i];
 
 		if (setting.type !== 'heading') {
 			if (typeof setting.updateCallback !== 'undefined' && setting.updateCallback === 'misc') {
-				setting.value = Container.m[setting.key]
+				setting.value = Container.m[setting.key] ?? ""
 			} else {
-				setting.value = Container.p[setting.key]
+				setting.value = Container.p[setting.key] ?? ""
 			}
 		}
 	}
