@@ -31,6 +31,7 @@ const containerObj = {
 
 let ls_containerObj = localStorage.getItem('Container')
 let ls_lastImg = null
+let clockTimeout = null
 
 function randomNumberBetween(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min)
@@ -40,7 +41,6 @@ function randomNumberBetween(min, max) {
 if (typeof ls_containerObj !== 'undefined' && ls_containerObj !== null) {
 	let parsed = JSON.parse(ls_containerObj)
 	console.log("found data in localStorage, loading Container: ", parsed)
-	console.log(parsed)
 	Object.assign(containerObj, parsed) //update the current container object with the one from localstorage
 }
 /**
@@ -50,6 +50,7 @@ if (typeof ls_containerObj !== 'undefined' && ls_containerObj !== null) {
 const Container = Observable.from(containerObj)
 Container.observe(changes => {
 	changes.forEach(change => {
+		let cl = containerElem.classList
 		//console.log(`detected ${change.type} in '${change.path[1]}': `, change)
 
 		if (change.path[0] === "p") { //props changed
@@ -66,7 +67,7 @@ Container.observe(changes => {
 					if (Container.p.width < 33) Container.p.width = 32
 				}
 				document.querySelector("#settingElem-width .s-update").value = Container.p.width
-				const cl = containerElem.classList
+				
 				switch (change.value) {
 					case "side":
 						cl.remove("noclock")
@@ -82,23 +83,33 @@ Container.observe(changes => {
 						cl.remove("greetclock")
 						break;
 				}
-
+				updateClock()
+			} else if (key === "greetingtype") {
+				switch (change.value) {
+					case "nogreeting":
+						cl.add("nogreeting")
+						break;
+					default:
+					case "greeting":
+						cl.remove("nogreeting")
+						break;
+				}
 			} else if (key === "cols") {
 				//if its not 2 or 3 just dont change anything
 				change.value = [2, 3].includes(change.value) ? change.value : Container.p.cols
 
-				let cl = [...containerElem.classList] //backup classlist
-				cl[1] = `cols-${change.value}`
-				containerElem.classList = cl.join(" ") //reconstruct classlists
+				let _cl = [...containerElem.classList] //backup classlist
+				_cl[1] = `cols-${change.value}`
+				cl = _cl.join(" ") //reconstruct classlists
 
 			} else if (key === "width") {
 				document.getElementById('styles').innerHTML = `:root{--maxwidth:${change.value || 40}rem;}`
 			} else {
 				//if new value is true, add the class otherwise remove the class 
 				if (change.value === true) {
-					containerElem.classList.add(key)
+					cl.add(key)
 				} else {
-					containerElem.classList.remove(key)
+					cl.remove(key)
 				}
 
 				//make tallpic not work when leftpic is off & update the checkboxes in settings
@@ -431,7 +442,6 @@ function checkAndApplyImg(path, imgelem) {
 function updateClock() {
 	time.setTime(Date.now())
 
-	let clock = document.getElementById('clock')
 	let timestr = time.toTimeString()
 	let t = timestr.split(":")
 
@@ -445,16 +455,21 @@ function updateClock() {
 	/*console.log("next in ms: ", diffTime)
 	console.log(`now: ${time.toTimeString()} next: ${next.toTimeString()}`)*/
 
-	console.log(t)
-	clock.innerHTML = `
-		<span class="clockdigit">${t[0][0]}</span>
-		<span class="clockdigit">${t[0][1]}</span>
-		<span class="clockdigit">-</span>
-		<span class="clockdigit">${t[1][0]}</span>
-		<span class="clockdigit">${t[1][1]}</span>
-	`
-	document.getElementById("greeting-clock").innerHTML =
-	`${t[0][0]}${t[0][1]}:${t[1][0]}${t[1][1]}`
+	console.log(t.join(" "), Container.p.clocktype)
+	switch (Container.p.clocktype) {
+		case "greeting":
+			document.getElementById("greeting-clock").innerHTML = `${t[0][0]}${t[0][1]}:${t[1][0]}${t[1][1]}`;
+			break;
+		default:
+			document.getElementById('clock').innerHTML = `
+			<span class="clockdigit">${t[0][0]}</span>
+			<span class="clockdigit">${t[0][1]}</span>
+			<span class="clockdigit">-</span>
+			<span class="clockdigit">${t[1][0]}</span>
+			<span class="clockdigit">${t[1][1]}</span>`
+			break;
+	}
 
-	setTimeout(updateClock, diffTime)
+	if (clockTimeout !== null) clearTimeout(clockTimeout)
+	clockTimeout = setTimeout(updateClock, diffTime)
 }
