@@ -113,9 +113,10 @@ body {
 	left: initial;
 	right: 0;
 }
-#settings-screen-left summary {
+#settings-screen-right summary {
 	font-weight: 800;
 	font-size: medium;
+	margin: 0.3rem 0;
 }
 
 #settings,
@@ -648,4 +649,12 @@ input:checked + .slider:before {
 #shogiheader #shogiembed {
 	grid-area: thing;
 	z-index: 2;
+}
+
+.help-table, .help-table tr, .help-table td, .help-table th {
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-collapse: collapse;
+}
+.help-table td {
+	padding: 0.2rem;
 }

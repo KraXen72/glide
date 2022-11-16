@@ -57,7 +57,3 @@ function tinydate(str, custom) {
 		return out;
 	};
 }
-
-const kitchensink = tinydate(`{Wn}/{wn}, {dd}.{mm}.{YY} {d}.{m}.{YY} ({yy}). month: {mn}/{Mn}. {_Wn}, {_wn}, {_Mn}, {_mn}`)
-
-console.log(kitchensink(new Date()))
