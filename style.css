@@ -175,6 +175,7 @@ body {
 .setting h1.setting-title {
 	font-size: 1.7rem;
 	color: var(--main-text-color);
+	margin-bottom: 0.9rem;
 }
 .setting .setting-desc {
 	border: 2px solid var(--main-accent-secondary);
