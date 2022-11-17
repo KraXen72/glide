@@ -16,7 +16,7 @@ function ordinal(r){if(r>20||r<10)switch(r%10){case 1:return"ˢᵗ";case 2:retur
 // custom map: remove time stuff, add more date stuff
 var MAP = {
 	YY,
-	yy: (d) => "'" + YY(d).slice(2),
+	yy: (d) => YY(d).slice(2),
 	mm: (d) => d.getMonth() + 1,
 	Mn,
 	_Mn: (d) => Mn(d).toLowerCase(),
