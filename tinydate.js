@@ -4,9 +4,9 @@ const DATE_LOCALE = 'en-US'
 
 const YY = (d) => d.getFullYear().toString()
 const Mn = (d) => d.toLocaleDateString(DATE_LOCALE, { month: 'long' })
-const mn = (d) => d.toLocaleDateString('en-US', { month: 'short' })
-const Wn = (d) => d.toLocaleDateString('en-US', { weekday: 'long' })
-const wn = (d) => d.toLocaleDateString('en-US', { weekday: 'short' })
+const mn = (d) => d.toLocaleDateString(DATE_LOCALE, { month: 'short' })
+const Wn = (d) => d.toLocaleDateString(DATE_LOCALE, { weekday: 'long' })
+const wn = (d) => d.toLocaleDateString(DATE_LOCALE, { weekday: 'short' })
 
 //https://stackoverflow.com/a/15208341/13342359
 // function ordinal(r){if(r>20||r<10)switch(r%10){case 1:return"st";case 2:return"nd";case 3:return"rd"}return"th"}
