@@ -243,18 +243,12 @@
 .container.leftpic.nopic { max-width: var(--maxwidth); }
 .container.leftpic.nopic .colwrap { border-radius: var(--border-radius); }
 
-
 /*tallpic*/
 .container.tallpic {
 	--min-pic-height-short: var(--min-pic-height);
 }
 
-/*make titles fit in my layout*/
-.container.leftpic.tallpic.verdana.connect:not(.notitle) h1.title.greeting {
-	padding: calc( var(--spacer) * 0.6 ) var(--spacer) calc( var(--spacer) * 0.1 ) var(--spacer);
-	margin: 0 var(--margin-col);
-}
-
+/* nolinks */
 .container.nolinks .colwrap {
 	display: none!important;
 }
@@ -270,4 +264,10 @@
 }
 .container.nolinks .search input {
     width: 100% !important;
+}
+
+/*make titles fit in my layout*/
+.container.leftpic.tallpic.verdana.connect:not(.notitle) h1.title.greeting {
+	padding: calc( var(--spacer) * 0.6 ) var(--spacer) calc( var(--spacer) * 0.1 ) var(--spacer);
+	margin: 0 var(--margin-col);
 }

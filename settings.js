@@ -10,7 +10,7 @@ const settings = {
 		{ title: `Number of columns`, desc: `How many columns to show: either 2 or 3`, type: 'sel', optType: 'Number', opts: [3, 2], key: 'cols', classes: ['cols-3', 'cols-2'] },
 		{ title: `Clock style`, desc: `Which clock style to use: Hidden, Side, Greeting (needs visible title)`, type: 'sel', optType: 'String', opts: ["noclock", "side", "greeting"], key: "clocktype" },
 		{ title: `Greeting style`, desc: '', key: 'greetingtype', type: 'sel', opts: ['nogreeting', 'greeting', 'greeting+date', 'date'], optType: 'String', desc: "what type of greeting to use (or none)" },
-		{ title: `Date format`, key: 'dateformat', desc: 'date format to use. Check right setting pane for help.', type: 'autocomp', opts: ['{wn}, {mm}. {Mn}', '{_wn}, {dd}.{mm}', '{Wn}, {mm}/{dd}/{YY}', '{Wn}', '{wn}, {ddt} {mn}']},
+		{ title: `Date format`, key: 'dateformat', desc: 'date format to use. Check right setting pane for help.', type: 'autocomp', opts: ['{wn}, {dd}. {Mn}', '{_wn}, {dd}.{mm}', '{Wn}, {mm}/{dd}/{YY}', '{Wn}', '{wn}, {ddt} {mn}']},
 		{ title: `Use Verdana font`, desc: `Use Verdana font instead of Roboto`, type: 'bool', key: 'verdana', classes: ['verdana', ''] },
 		{ title: "Hiding elements", type: 'heading', key: "hidingTitle" },
 		{ title: `Hide Search`, desc: '', type: 'bool', key: 'nosearch', classes: ['nosearch', ''] },

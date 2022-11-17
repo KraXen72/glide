@@ -354,7 +354,7 @@ function toggleElem(id) {
  * show and element and then fade it away
  * @param {String} query document.querySelector for element to blink
  */
-function blinkElem(query, dec) {
+function blinkElem(query) {
 	let elem = document.querySelector(query)
 
 	elem.classList.remove('fade')
@@ -367,6 +367,15 @@ function blinkElem(query, dec) {
 
 const dateHTML = `<span id="date"></span>`
 const clockHTML = `<span id="greeting-clock">00:00</span>`
+
+/**
+ * update the h1.greeting. values are only for overrides, defaults are dynamic.
+ * no need to provide any args. it should work.
+ * automaticaly calls updateDate & updateClock if they are enabled
+ * @param {string} greeting greeting text. falls back to what is in container
+ * @param {boolean} dateEnabled if date is enabled
+ * @param {boolean} greetClockEnabled if greet type clock is enabled
+ */
 function updateGreetingElem(
 	greeting = Container.m.greeting,
 	dateEnabled = Container.p.greetingtype === "greeting+date" || Container.p.greetingtype === 'date',
