@@ -8,18 +8,22 @@ const mn = (d) => d.toLocaleDateString('en-US', { month: 'short' })
 const Wn = (d) => d.toLocaleDateString('en-US', { weekday: 'long' })
 const wn = (d) => d.toLocaleDateString('en-US', { weekday: 'short' })
 
+//https://stackoverflow.com/a/15208341/13342359
+// function ordinal(r){if(r>20||r<10)switch(r%10){case 1:return"st";case 2:return"nd";case 3:return"rd"}return"th"}
+//swapped for superscript letters
+function ordinal(r){if(r>20||r<10)switch(r%10){case 1:return"ˢᵗ";case 2:return"ⁿᵈ";case 3:return"ʳᵈ"}return"ᵗʰ"}
+
 // custom map: remove time stuff, add more date stuff
 var MAP = {
 	YY,
 	yy: (d) => "'" + YY(d).slice(2),
-	m: (d) => d.getMonth() + 1,
 	mm: (d) => d.getMonth() + 1,
 	Mn,
 	_Mn: (d) => Mn(d).toLowerCase(),
 	mn,
 	_mn: (d) => mn(d).toLowerCase(),
-	d: 'getDay',
-	dd: 'getDay',
+	dd: 'getDate',
+	ddt: (d) => `${d.getDate()}${ordinal(d.getDate())}`,
 	Wn,
 	_Wn: (d) => Wn(d).toLowerCase(),
 	wn,
