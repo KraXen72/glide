@@ -163,6 +163,7 @@ body {
 	height: 30px;
 	color: var(--main-text-color-secondary);
 }
+.setting:not(.heading)[hidden] { display: none; }
 .setting.textarea {
 	height: min-content;
 	align-items: flex-start;
@@ -416,7 +417,7 @@ header img {
 }
 
 /* greeting */
-.greeting {
+h1.greeting {
 	grid-area: greeting;
 	background-color: var(--main-card-background);
 	border-radius: var(--border-radius);
@@ -425,6 +426,9 @@ header img {
 	font-weight: 800;
 
 	user-select: none;
+	display: inline-flex;
+	column-gap: .4rem;
+	align-items: center;
 }
 
 /*columns*/
@@ -493,12 +497,13 @@ header img {
 
 .accent {
 	color: var(--main-accent);
-	padding-right: 10px;
 	user-select: none;
+	padding-right: 10px;
 }
-.jsoninp {
-	width: 50%;
-}
+h1.greeting .accent { padding-right: 0; line-height: initial; }
+
+.jsoninp { width: 50%; }
+/* h1.greeting sup { align-self: flex-start; vertical-align: baseline; } */
 
 .toggle,
 .settings,
@@ -561,6 +566,8 @@ textarea {
 	overflow-y: auto;
 	width: 169px;
 }
+.slider { border-radius: 100px; }
+select.s-update { border-radius: calc(var(--border-radius) / 2); }
 .slider,
 select.s-update {
 	background-color: var(--main-text-color-secondary);
@@ -571,7 +578,6 @@ select.s-update {
 	right: 0;
 	top: 0;
 	transition: 0.4s;
-	border-radius: 100px;
 }
 .slider:before {
 	background-color: var(--main-text-color);
