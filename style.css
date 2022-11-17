@@ -633,30 +633,6 @@ input:checked + .slider:before {
 	}
 }
 
-/* shogi embed */
-#shogiembed {
-	max-height: 365px;
-	width: max-content;
-	min-width: 300px;
-	height: 489px;
-
-	/*pointer-events: none !important;*/
-}
-#shogiheader {
-	min-width: 300px;
-	display: grid;
-	grid-template: 1fr / 1fr;
-	grid-template-areas: "thing";
-}
-#shogiheader img {
-	grid-area: thing;
-	z-index: 1;
-}
-#shogiheader #shogiembed {
-	grid-area: thing;
-	z-index: 2;
-}
-
 .help-table, .help-table tr, .help-table td, .help-table th {
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	border-collapse: collapse;

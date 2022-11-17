@@ -41,10 +41,3 @@ After you put it in the img folder you can just change the image path in setting
 [tinydate](https://github.com/lukeed/tinydate) super small date formatting library (modified to fit startpage's needs)
   
 **commit history (before inital release here):** [commit history](https://github.com/KraXen72/startpage-new)
-
-# bonus
-if you are a huge fan of shogi (looking at you buffet) and would want a live shogi match always on your startpage (at your own risk, not my fault you will never get anything done), you can change the html  like this:
-![howto](screenshots/shogi.png)  
-and it will look like this:   
-![shogiresult](screenshots/shogi2.png)  
-the embed is live (will update real-time) and if you click on it, you'll be taken to the match on lishogi.
