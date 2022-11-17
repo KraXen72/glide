@@ -84,17 +84,31 @@ Container.observe(changes => {
 						cl.remove("greetclock")
 						break;
 				}
+				updateGreetingElem()
 				updateClock()
 			} else if (key === "greetingtype") {
+				cl.remove("soft-hide-greeting")
+				cl.remove("nogreeting")
 				switch (change.value) {
 					case "nogreeting":
 						cl.add("nogreeting")
+						cl.remove("date")
+						break;
+					case "greeting+date":
+						cl.add("date")
+						break;
+					case "date":
+						cl.add("soft-hide-greeting")
+						cl.add("date")
 						break;
 					default:
 					case "greeting":
-						cl.remove("nogreeting")
+						cl.remove("date")
 						break;
 				}
+				updateGreetingElem()
+				updateClock()
+				updateDate()
 			} else if (key === "cols") {
 				//if its not 2 or 3 just dont change anything
 				change.value = [2, 3].includes(change.value) ? change.value : Container.p.cols
@@ -105,6 +119,8 @@ Container.observe(changes => {
 
 			} else if (key === "width") {
 				document.getElementById('styles').innerHTML = `:root{--maxwidth:${change.value || 40}rem;}`
+			} else if (key === "dateformat") {
+				updateDate(change.value)
 			} else {
 				//if new value is true, add the class otherwise remove the class 
 				if (change.value === true) {
@@ -227,6 +243,9 @@ const loadConstraints = {
 		}
 		//console.log("Checked load constraints", constraints, passing)
 		if (passing) containerElem.removeAttribute("style")
+		updateGreetingElem()
+		updateClock()
+		updateDate()
 	}
 }
 
@@ -346,6 +365,23 @@ function blinkElem(query, dec) {
 	}, 0)
 }
 
+const dateHTML = `<span id="date"></span>`
+const clockHTML = `<span id="greeting-clock">00:00</span>`
+function updateGreetingElem(
+	greeting = Container.m.greeting,
+	dateEnabled = Container.p.greetingtype === "greeting+date" || Container.p.greetingtype === 'date',
+	greetClockEnabled = Container.p.clocktype === "greeting"
+) { 
+	if (!containerElem.classList.contains("soft-hide-greeting")) {
+		document.querySelector("h1.title.greeting").innerHTML = `${greeting} <span class="accent">~</span> ${dateEnabled ? dateHTML : ""} ${greetClockEnabled ? clockHTML : ""}`
+	} else {
+		document.querySelector("h1.title.greeting").innerHTML = `${dateEnabled ? dateHTML : ""} <span class="accent">~</span> ${greetClockEnabled ? clockHTML : ""}`
+	}
+	
+	if (dateEnabled) updateDate()
+	if (greetClockEnabled) updateClock() // should be fine bc it clears the timeout anyway
+}
+
 /**
  * add functionality to the misc settings
  * @param {string} what 'incognito'
@@ -364,7 +400,8 @@ function miscUpdate(what, value, genuine = true) {
 			})
 			break;
 		case "greeting":
-			document.querySelector(`h1.title.greeting`).innerHTML = `${value} <span class="accent">~</span>`
+			updateGreetingElem(value)
+			if (Container.p.greetingtype === "greeting+date") updateDate()
 			break;
 		case "col1Title":
 		case "col2Title":
@@ -437,6 +474,18 @@ function checkAndApplyImg(path, imgelem) {
 }
 
 /**
+ * update date. call this whenever a date update is needed. no timeout is being set.
+ */
+function updateDate(template = Container.p.dateformat) {
+	if (Container.p.greetingtype === "date" || Container.p.greetingtype.endsWith("date")) {
+		try {
+			const formattedDate = tinydate(template)(time)
+			document.getElementById("date").innerHTML = formattedDate
+		} catch (e) { console.warn("invalid date format. noop") }
+	}
+}
+
+/**
  * update the #clock. call this function once, it will itself every minute (adjusts automatically)
  */
 function updateClock() {
@@ -452,10 +501,7 @@ function updateClock() {
 	next.setSeconds(0)
 
 	let diffTime = Math.abs(next - time) - 1;
-	/*console.log("next in ms: ", diffTime)
-	console.log(`now: ${time.toTimeString()} next: ${next.toTimeString()}`)*/
 
-	console.log(t.join(" "), Container.p.clocktype)
 	switch (Container.p.clocktype) {
 		case "greeting":
 			document.getElementById("greeting-clock").innerHTML = `${t[0][0]}${t[0][1]}:${t[1][0]}${t[1][1]}`;
@@ -469,7 +515,9 @@ function updateClock() {
 			<span class="clockdigit">${t[1][1]}</span>`
 			break;
 	}
+	updateDate()
 
 	if (clockTimeout !== null) clearTimeout(clockTimeout)
 	clockTimeout = setTimeout(updateClock, diffTime)
+	console.log(time.toTimeString(), "clock update")
 }

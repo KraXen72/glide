@@ -149,32 +149,43 @@
 }
 
 /* greeting clock */
-#greeting-clock { display: none }
-.container.greetclock.cols-2 .colwrap {
-	grid-template-areas:
-	"greeting greetclock"
-	"col1 col2";
-	grid-template-columns: 1fr 1fr;
-}
-.container.greetclock.cols-3 .colwrap {
-	grid-template-areas:
-	"greeting greeting greetclock"
-	"col1 col2 col3";
-	grid-template-columns: 1fr 1fr 1fr;
-}
-.container.greetclock #greeting-clock {
-	display: inline-flex;
-	align-items: center;
-	justify-content: flex-end;
-	grid-area: greetclock;
-	text-align: right;
-	
+/* date */
+.container.greetclock #greeting-clock, .container.date #date {
 	font-size: 1.8rem;
 	color: #494949;
 	font-weight: 500;
+	height: 3rem;
+	line-height: normal;
 }
+.container.date #date {
+	display: inline-flex;
+	align-items: center;
+}
+.container.greetclock #greeting-clock {
+	text-align: right;
+	display: inline-flex;
+	align-items: center;
+}
+/* greeting + date */
+.container.greetclock.date #date { flex-grow: 1;}
 
+/* greeting + clock */
+.container.greetclock:not(.date) #greeting-clock {
+	position: relative;
+	right: 0;
+}
+.container.greetclock:not(.date) h1.greeting .accent,
+.container.date.soft-hide-greeting.date h1.greeting .accent { margin-right: auto; }
+.container.date.soft-hide-greeting.date h1.greeting .accent { font-size: 1.8rem; }
 
+/* greeting date */
+.container:not(.date) #date { display: none }
+
+/* date only */
+.container.soft-hide-greeting.date #date { 
+	color: var(--main-text-color-secondary);
+	flex-grow: initial;
+}
 /*leftpic connect requires a wholeass separate category cause its actin up*/
 .container.leftpic.connect .colwrap,
 .container.leftpic.connect header {
