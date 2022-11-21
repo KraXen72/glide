@@ -137,9 +137,10 @@ class SettingElem {
 				this.optType = props.optType
 				break;
 			case 'autocomp':
-				this.HTML = `<span class="setting-title">${props.title} ${inlineDescElem()}</span>
-				<span><input type="text" class="rb-input s-update" name="${props.key}" autocomplete value="${props.value}" list="datalist-${props.title}">
-				<datalist id="datalist-${props.title}">${props.opts.map(o => `<option value ="${o}">${o}</option>`).join("")}</datalist></span>`
+				const joinedTitle = props.title.replaceAll(" ", "-")
+				this.HTML = `<span class="setting-title">${joinedTitle} ${inlineDescElem()}</span>
+				<span><input type="text" class="rb-input s-update" name="${props.key}" autocomplete value="${props.value}" list="datalist-${joinedTitle}">
+				<datalist id="datalist-${joinedTitle}">${props.opts.map(o => `<option value ="${o}">${o}</option>`).join("")}</datalist></span>`
 				this.mutable = true
 				this.updateKey = `value`
 				this.updateMethod = `oninput`
