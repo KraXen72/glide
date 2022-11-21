@@ -41,7 +41,13 @@ function randomNumberBetween(min, max) {
 //this will only update settings
 if (typeof ls_containerObj !== 'undefined' && ls_containerObj !== null) {
 	let parsed = JSON.parse(ls_containerObj)
+	console.log("before", Object.assign({}, containerObj), "after", parsed)
 	console.log("found data in localStorage, loading Container: ", parsed)
+	for (let i = 0; i < Object.keys(containerObj).length; i++) {
+		const key = Object.keys(containerObj)[i];
+		console.log("key", key)
+	}
+
 	Object.assign(containerObj, parsed) //update the current container object with the one from localstorage
 }
 /**
@@ -279,9 +285,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("found data in localStorage, loading classList: ", ls_classList)
 		containerElem.classList = ls_classList
 
-		loadConstraints.layoutHasApplied = true;
-		loadConstraints.check()
 	}
+	loadConstraints.layoutHasApplied = true;
+	loadConstraints.check()
 
 	document.getElementById('styles').innerHTML = `:root{--maxwidth:${Container.p.width}rem;}`
 	updateClock()
