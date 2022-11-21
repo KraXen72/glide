@@ -1,7 +1,7 @@
 let toggle, settbtn, containerElem
 let time = new Date()
 
-const containerObj = {
+let containerObj = {
 	p: { //props
 		connect: false, //.connect: connects links together
 		compact: false, //.compact: make links compact
@@ -43,12 +43,9 @@ if (typeof ls_containerObj !== 'undefined' && ls_containerObj !== null) {
 	let parsed = JSON.parse(ls_containerObj)
 	console.log("before", Object.assign({}, containerObj), "after", parsed)
 	console.log("found data in localStorage, loading Container: ", parsed)
-	for (let i = 0; i < Object.keys(containerObj).length; i++) {
-		const key = Object.keys(containerObj)[i];
-		console.log("key", key)
-	}
 
-	Object.assign(containerObj, parsed) //update the current container object with the one from localstorage
+	//Object.assign(containerObj, parsed) //update the current container object with the one from localstorage
+	containerObj = circleAssign(containerObj, parsed)
 }
 /**
 * Container is the main object for layout; if you change its props, the layout instantly updates.

@@ -38,6 +38,7 @@ After you put it in the img folder you can just change the image path in setting
 ### libraries used:  
 [object-observer](https://github.com/gullerya/object-observer/blob/main/src/object-observer.js) to automatically update layout when object changes - [repo](https://github.com/gullerya/object-observer)  
 [sortablejs](http://sortablejs.github.io/Sortable/Sortable.js) to enable drag and drop reordering of links - [repo](https://github.com/SortableJS/Sortable)    
+[circle-assign](https://github.com/hammy2899/circle-assign) to enable deep object assigning (i can't believe js does not have it by default)
 [tinydate](https://github.com/lukeed/tinydate) super small date formatting library (modified to fit startpage's needs)
   
 **commit history (before inital release here):** [commit history](https://github.com/KraXen72/startpage-new)
