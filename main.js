@@ -434,7 +434,7 @@ function miscUpdate(what, value, genuine = true) {
 			} else {
 				checkAndApplyImg(`img/${value}`, img)
 			}
-			
+		break;
 		case "customfont":
 			//add some rules to apply the custom font
 			{
