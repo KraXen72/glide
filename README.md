@@ -28,6 +28,11 @@ the image should be either a standard portrait image (good for left image) or a 
 
 After you put it in the img folder you can just change the image path in settings to the filename (don't add img/)
 - custom css: you can create a `custom.css` to apply custom css (wow, unheard of)
+  
+### support development
+[![Recurring donation via Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/KraXen72)
+[![One-time donation via ko-fi.com](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/kraxen72)  
+Any donations are highly appreciated! <3
 
 ### thanks to:
 - [this startpage](https://github.com/WahyuHidayattz/startpage-new) for inspiration & original html/css boilerplate  
