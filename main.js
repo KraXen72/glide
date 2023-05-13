@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	toggle = document.getElementById('toggle');
 	settbtn = document.getElementById('settings');
-
+	
 	containerElem = document.getElementById('container')
 
 	document.getElementById("main-img").onload = () => {
