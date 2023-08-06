@@ -405,11 +405,7 @@ function miscUpdate(what, value, genuine = true) {
 	switch (what) {
 		case "incognito":
 			[...document.querySelectorAll(".settings.smolbtn, .toggle.smolbtn")].forEach(smolbtn => {
-				if (value === true) {
-					smolbtn.classList.add('incognito')
-				} else {
-					smolbtn.classList.remove('incognito')
-				}
+				smolbtn.classList.toggle('incognito', value)
 			})
 			break;
 		case "greeting":
