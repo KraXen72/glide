@@ -24,7 +24,7 @@ const settings = {
 		{ title: `1st column title:`, key: 'col1Title', type: 'text', updateCallback: 'misc', value: 'links' },
 		{ title: `2nd column title:`, key: 'col2Title', type: 'text', updateCallback: 'misc', value: 'social' },
 		{ title: `3rd column title:`, key: 'col3Title', type: 'text', updateCallback: 'misc', value: 'other' },
-		{ title: `image path:`, key: 'imgPath', type: 'text', updateCallback: 'misc' },
+		{ title: `image path:`, key: 'imgPath', type: 'text', updateCallback: 'misc', desc: 'for best results with "portrait image", scale your images to width=563px or width=358px in gimp.' },
 		{ title: `additional images (1 per line):`, key: 'imgGallery', type: 'textarea', updateCallback: 'misc', desc: "1 image per line. Each time an image will be randomly selected." }
 	],
 	l: { //links
