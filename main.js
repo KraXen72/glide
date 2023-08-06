@@ -26,6 +26,7 @@ let containerObj = {
 		col2Title: 'social',
 		col3Title: 'other',
 		imgPath: 'background.png', //image path
+		cycleExtraImg: false,
 		imgGallery: ""
 	}
 }
@@ -420,26 +421,28 @@ function miscUpdate(what, value, genuine = true) {
 		case "col3Title":
 			document.querySelector(`div.title.${what}`).innerHTML = value || "..."
 			break;
-		case "imgPath":
-			let img = document.getElementById('main-img')
-			if (Container.m.imgGallery && Container.m.imgGallery !== "" && !genuine) {
+		case "imgPath": 
+			{
+				let img = document.getElementById('main-img')
+				if (genuine || !Container.m.imgGallery || Container.m.imgGallery === "") return checkAndApplyImg(`img/${value}`, img);
 				let items = Container.m.imgGallery.split("\n")
-				if (items.length > 0) {
-					items.push(value) // add the imgPath to the pool
-					// ensure uniqueness each time by remembering last image
-					if (ls_lastImg && ls_lastImg !== null) items = items.filter(img => img !== ls_lastImg)
-					const index = randomNumberBetween(0, items.length - 1)
-					localStorage.setItem("lastimg", items[index] )
-					checkAndApplyImg(`img/${items[index]}`, img)
+				if (items.length === 0) return checkAndApplyImg(`img/${value}`, img);
+				
+				items.push(value) // add the imgPath to the pool
+
+				let newIndex;
+				if (Container.m.cycleExtraImg) {
+					const lastIndex = ls_lastImg && ls_lastImg !== null ? items.indexOf(ls_lastImg) : -1
+					newIndex = lastIndex !== items.length - 1 ? lastIndex + 1 : 0;
 				} else {
-					checkAndApplyImg(`img/${value}`, img)
+					if (ls_lastImg && ls_lastImg !== null) items = items.filter(img => img !== ls_lastImg)
+					newIndex = randomNumberBetween(0, items.length - 1)
 				}
-			} else {
-				checkAndApplyImg(`img/${value}`, img)
+				localStorage.setItem("lastimg", items[newIndex] )
+				checkAndApplyImg(`img/${items[newIndex]}`, img)
 			}
-		break;
+			break;
 		case "customfont":
-			//add some rules to apply the custom font
 			{
 				let ff = `
 								@font-face {
@@ -455,11 +458,7 @@ function miscUpdate(what, value, genuine = true) {
 										line-height: 1.5;
 								}
 								`
-				if (value !== undefined && value !== '') {
-					document.getElementById("customfont").innerHTML = ff
-				} else {
-					document.getElementById("customfont").innerHTML = ''
-				}
+				document.getElementById("customfont").innerHTML = typeof value !== "undefined" && value !== '' ? ff : ''
 			}
 			break;
 		default:

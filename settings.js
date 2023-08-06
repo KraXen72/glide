@@ -25,7 +25,8 @@ const settings = {
 		{ title: `2nd column title:`, key: 'col2Title', type: 'text', updateCallback: 'misc', value: 'social' },
 		{ title: `3rd column title:`, key: 'col3Title', type: 'text', updateCallback: 'misc', value: 'other' },
 		{ title: `image path:`, key: 'imgPath', type: 'text', updateCallback: 'misc', desc: 'for best results with "portrait image", scale your images to width=563px or width=358px in gimp.' },
-		{ title: `additional images (1 per line):`, key: 'imgGallery', type: 'textarea', updateCallback: 'misc', desc: "1 image per line. Each time an image will be randomly selected." }
+		{ title: `additional images (1 per line):`, key: 'imgGallery', type: 'textarea', updateCallback: 'misc', desc: "1 image per line. Each time an image will be randomly selected." },
+		{ title: `cycle images in order`, key: 'cycleExtraImg', type: 'bool', updateCallback: 'misc', desc: `By default, Additional images get randomly cycled. Enabling this will cycle them in-order.` }
 	],
 	l: { //links
 		col1: [
@@ -250,10 +251,12 @@ function initsettings() {
 			elem.style.height = (elem.scrollHeight) + "px";
 	}
 	for (let i = 0; i < tx.length; i++) {
-		tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
-		tx[i].addEventListener("input", () => tx_updateFunc(tx[i]), false);
-		tx[i].addEventListener("focus", () => tx_updateFunc(tx[i]), false);
-		console.log(tx[i], tx[i].scrollHeight)
+		tx[i].style.height = `${tx[i].scrollHeight}px`
+		tx[i].style.overflowY = 'hidden';
+		tx[i].addEventListener("input", () => tx_updateFunc(tx[i]));
+		tx[i].addEventListener("focus", () => tx_updateFunc(tx[i]));
+		tx[i].addEventListener("blur", function() { this.style.height = 'auto' })
+		// console.log(tx[i], tx[i].scrollHeight)
 	}
 
 	//generate sortable links
