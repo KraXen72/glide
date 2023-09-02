@@ -161,6 +161,11 @@
 	display: inline-flex;
 	align-items: center;
 }
+.container.date #date .sup {
+	font-size: 1rem;
+	height: 1.8rem;
+	line-height: 1;
+}
 .container.greetclock #greeting-clock {
 	text-align: right;
 	display: inline-flex;
