@@ -53,7 +53,6 @@ if (typeof ls_containerObj !== 'undefined' && ls_containerObj !== null) {
 */
 
 const Container = Observable.from(containerObj)
-console.log(Container)
 Container.observe(changes => {
 	changes.forEach(change => {
 		let cl = containerElem.classList
