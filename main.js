@@ -427,7 +427,7 @@ function miscUpdate(what, value, genuine = true) {
 				if (items.length === 0) return checkAndApplyImg(`img/${value}`, img);				
 				items.push(value) // add the imgPath to the pool
 
-				items = items.filter(item => item.trim() !== '');
+				items = items.map(item => item.trim()).filter(item => item !== '');
 				if (Container.m.cycleExtraImg) {
 					const lastIndex = ls_lastImg && ls_lastImg !== null ? items.indexOf(ls_lastImg) : -1
 					newIndex = lastIndex !== items.length - 1 ? lastIndex + 1 : 0;
