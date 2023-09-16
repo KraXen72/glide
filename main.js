@@ -421,15 +421,13 @@ function miscUpdate(what, value, genuine = true) {
 			{
 				let img = document.getElementById('main-img')
 				if (genuine || !Container.m.imgGallery || Container.m.imgGallery === "") return checkAndApplyImg(`img/${value}`, img);
-				let items = Container.m.imgGallery
-					.split("\n")
-					.filter(item => item.trim() !== '');
+				let items = Container.m.imgGallery.split("\n")
+				let newIndex;
 				
-				if (items.length === 0) return checkAndApplyImg(`img/${value}`, img);
-				
+				if (items.length === 0) return checkAndApplyImg(`img/${value}`, img);				
 				items.push(value) // add the imgPath to the pool
 
-				let newIndex;
+				items = items.filter(item => item.trim() !== '');
 				if (Container.m.cycleExtraImg) {
 					const lastIndex = ls_lastImg && ls_lastImg !== null ? items.indexOf(ls_lastImg) : -1
 					newIndex = lastIndex !== items.length - 1 ? lastIndex + 1 : 0;
