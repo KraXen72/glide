@@ -421,7 +421,10 @@ function miscUpdate(what, value, genuine = true) {
 			{
 				let img = document.getElementById('main-img')
 				if (genuine || !Container.m.imgGallery || Container.m.imgGallery === "") return checkAndApplyImg(`img/${value}`, img);
-				let items = Container.m.imgGallery.split("\n")
+				let items = Container.m.imgGallery
+					.split("\n")
+					.filter(item => item.trim() !== '');
+				
 				if (items.length === 0) return checkAndApplyImg(`img/${value}`, img);
 				
 				items.push(value) // add the imgPath to the pool
