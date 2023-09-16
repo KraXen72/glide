@@ -531,5 +531,5 @@ function updateClock() {
 
 	if (clockTimeout !== null) clearTimeout(clockTimeout)
 	clockTimeout = setTimeout(updateClock, diffTime)
-	console.log(time.toTimeString(), "clock update")
+	// console.log(time.toTimeString(), "clock update")
 }
