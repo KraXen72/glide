@@ -424,7 +424,7 @@ function miscUpdate(what, value, genuine = true) {
 				let items = Container.m.imgGallery.split("\n")
 				let newIndex;
 				
-				if (items.length === 0) return checkAndApplyImg(`img/${value}`, img);				
+				if (items.length === 0 || items[0] === '--off--') return checkAndApplyImg(`img/${value}`, img);				
 				items.push(value) // add the imgPath to the pool
 
 				items = items.map(item => item.trim()).filter(item => item !== '');
