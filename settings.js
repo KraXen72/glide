@@ -25,7 +25,7 @@ const settings = {
 		{ title: `2nd column title:`, key: 'col2Title', type: 'text', updateCallback: 'misc', value: 'social' },
 		{ title: `3rd column title:`, key: 'col3Title', type: 'text', updateCallback: 'misc', value: 'other' },
 		{ title: `image path:`, key: 'imgPath', type: 'text', updateCallback: 'misc', desc: 'for best results with "portrait image", scale your images to width=563px or width=358px in gimp.' },
-		{ title: `additional images (1 per line):`, key: 'imgGallery', type: 'modal-multi', updateCallback: 'misc', desc: "&bull; 1 image per line. Each time an image will be randomly selected.\n&bull; To turn off imgGallery without deleting the images, set the first line to '--off--'" },
+		{ title: `additional images (1 per line):`, key: 'imgGallery', type: 'modal-multi', updateCallback: 'misc', desc: "&bull; 1 image per line. Each time an image will be randomly selected.\n&bull; To turn off imgGallery without deleting the images from here, set the first line to '--off--'" },
 		{ title: `cycle images in order`, key: 'cycleExtraImg', type: 'bool', updateCallback: 'misc', desc: `By default, Additional images get randomly cycled. Enabling this will cycle them in-order.` }
 	],
 	l: { //links
