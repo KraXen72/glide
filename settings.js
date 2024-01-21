@@ -25,7 +25,7 @@ const settings = {
 		{ title: `2nd column title:`, key: 'col2Title', type: 'text', updateCallback: 'misc', value: 'social' },
 		{ title: `3rd column title:`, key: 'col3Title', type: 'text', updateCallback: 'misc', value: 'other' },
 		{ title: `image path:`, key: 'imgPath', type: 'text', updateCallback: 'misc', desc: 'for best results with "portrait image", scale your images to width=563px or width=358px in gimp.' },
-		{ title: `additional images (1 per line):`, key: 'imgGallery', type: 'textarea', updateCallback: 'misc', desc: "1 image per line. Each time an image will be randomly selected." },
+		{ title: `additional images (1 per line):`, key: 'imgGallery', type: 'modal-multi', updateCallback: 'misc', desc: "1 image per line. Each time an image will be randomly selected." },
 		{ title: `cycle images in order`, key: 'cycleExtraImg', type: 'bool', updateCallback: 'misc', desc: `By default, Additional images get randomly cycled. Enabling this will cycle them in-order.` }
 	],
 	l: { //links
@@ -76,7 +76,7 @@ class SettingElem {
 		this.updateMethod = ''
 		/** @type {Object} save the props from constructor to this class (instance) */
 		this.props = props
-		/** @type {'bool' | 'sel' | 'heading' | 'text' |'textarea' | 'num' | 'autocomp'} type of this settingElem */
+		/** @type {'bool' | 'sel' | 'heading' | 'text' |'modal-multi' | 'num' | 'autocomp'} type of this settingElem */
 		this.type = props.type
 		/** @type {Boolean} if this setting actually changes something and can be updated. titles are immutable */
 		this.mutable = false
@@ -121,9 +121,15 @@ class SettingElem {
 				this.updateMethod = 'onchange'
 				this.optType = props.optType
 				break;
-			case 'textarea':
+			case 'modal-multi':
 				this.HTML = `<span class="setting-title" style="height: auto">${props.title}${inlineDescElem()}</span>
-				<span><textarea class="rb-input s-update" name="${props.key}" autocomplete="off">${props.value ?? ""}</textarea></span>`
+				<span>
+					<button class="modal-multi-open rb-button">&nbsp;&nbsp;&nbsp;edit&nbsp;&nbsp;&nbsp;</button>
+					<dialog id="modal-multi-${props.key}" class="modal-multi">
+						<span class="mm-top"><h1>${props.key}</h1><button class="modal-multi-close rb-button">Done</button></span>
+						<textarea class="rb-input s-update" name="${props.key}" autocomplete="off">${props.value ?? ""}</textarea>
+					</dialog>
+				</span>`
 				this.mutable = true
 				this.updateKey = `value`
 				this.updateMethod = `oninput`
@@ -207,6 +213,11 @@ class SettingElem {
 		w.classList.add(this.type) //add bool or title etc
 		w.innerHTML = this.HTML
 
+		if (this.type === 'modal-multi') {
+			w.querySelector(".modal-multi-open").onclick = function() { this.nextElementSibling.showModal() };
+			w.querySelector(".modal-multi-close").onclick = () => document.getElementById(`modal-multi-${this.props.key}`).close();
+		}
+
 		if (this.type === 'sel') { w.querySelector('select').value = this.props.value } //select value applying is fucky so like fix it i guess
 
 		//add an eventlistener if the setting is mutable
@@ -245,19 +256,19 @@ function initsettings() {
 	}
 
 	// autoresize textareas
-	const tx = document.getElementsByTagName("textarea");
-	const tx_updateFunc = (elem) => {
-			elem.style.height = 0;
-			elem.style.height = (elem.scrollHeight) + "px";
-	}
-	for (let i = 0; i < tx.length; i++) {
-		tx[i].style.height = `${tx[i].scrollHeight}px`
-		tx[i].style.overflowY = 'hidden';
-		tx[i].addEventListener("input", () => tx_updateFunc(tx[i]));
-		tx[i].addEventListener("focus", () => tx_updateFunc(tx[i]));
-		tx[i].addEventListener("blur", function() { this.style.height = 'auto' })
-		// console.log(tx[i], tx[i].scrollHeight)
-	}
+	// const tx = document.getElementsByTagName("textarea");
+	// const tx_updateFunc = (elem) => {
+	// 		elem.style.height = 0;
+	// 		elem.style.height = (elem.scrollHeight) + "px";
+	// }
+	// for (let i = 0; i < tx.length; i++) {
+	// 	tx[i].style.height = `${tx[i].scrollHeight}px`
+	// 	tx[i].style.overflowY = 'hidden';
+	// 	tx[i].addEventListener("input", () => tx_updateFunc(tx[i]));
+	// 	tx[i].addEventListener("focus", () => tx_updateFunc(tx[i]));
+	// 	tx[i].addEventListener("blur", function() { this.style.height = 'auto' })
+	// 	// console.log(tx[i], tx[i].scrollHeight)
+	// }
 
 	//generate sortable links
 	//load links into columns - repeat once for every column

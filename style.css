@@ -164,11 +164,11 @@ body {
 	color: var(--main-text-color-secondary);
 }
 .setting:not(.heading)[hidden] { display: none; }
-.setting.textarea {
+/* .setting.textarea {
 	height: min-content;
 	align-items: flex-start;
 	min-width: 169px;
-}
+} */
 .setting .setting-title {
 	width: 100%;
 	font-size: 1.2rem;
@@ -566,13 +566,32 @@ select.s-update {
 .switch input[type="checkbox"] {
 	display: none;
 }
-textarea {
-	resize: none;
-	min-height: 20px;
-	max-height: 200px;
-	overflow-y: auto;
-	width: 169px;
+
+dialog.modal-multi {
+	background: var(--main-background);
+    margin: none;
+    padding: .5rem;
+    border: 2px solid var(--main-accent);
+    border-radius: 8px;
+	max-height: 90vh;
 }
+.modal-multi h1 {
+    margin: 0;
+}
+dialog.modal-multi textarea {
+	resize: vertical;
+	width: 20rem;
+	min-height: 20rem;
+	overflow-y: auto;
+}
+dialog.modal-multi .mm-top {
+	color: var(--main-text-color);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: .5rem;
+}
+
 .slider { border-radius: 100px; }
 select.s-update { border-radius: calc(var(--border-radius) / 2); }
 .slider,
