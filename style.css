@@ -580,7 +580,7 @@ dialog.modal-multi {
 }
 dialog.modal-multi textarea {
 	resize: vertical;
-	width: 20rem;
+	width: 25rem;
 	min-height: 20rem;
 	overflow-y: auto;
 }
@@ -590,6 +590,10 @@ dialog.modal-multi .mm-top {
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: .5rem;
+}
+dialog.modal-multi .mm-desc {
+	color: var(--main-text-color-secondary);
+	width: 25rem;
 }
 
 .slider { border-radius: 100px; }

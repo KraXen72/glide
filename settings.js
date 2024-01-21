@@ -122,11 +122,12 @@ class SettingElem {
 				this.optType = props.optType
 				break;
 			case 'modal-multi':
-				this.HTML = `<span class="setting-title" style="height: auto">${props.title}${inlineDescElem()}</span>
+				this.HTML = `<span class="setting-title" style="height: auto">${props.title}</span>
 				<span>
 					<button class="modal-multi-open rb-button">&nbsp;&nbsp;&nbsp;edit&nbsp;&nbsp;&nbsp;</button>
 					<dialog id="modal-multi-${props.key}" class="modal-multi">
 						<span class="mm-top"><h1>${props.key}</h1><button class="modal-multi-close rb-button">Done</button></span>
+						${!!props.desc && props.desc !== "" ? `<p class="mm-desc">${props.desc.replaceAll("\n", '<br>')}</p>` : ''}
 						<textarea class="rb-input s-update" name="${props.key}" autocomplete="off">${props.value ?? ""}</textarea>
 					</dialog>
 				</span>`
