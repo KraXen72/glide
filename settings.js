@@ -126,7 +126,11 @@ class SettingElem {
 				<span>
 					<button class="modal-multi-open rb-button">&nbsp;&nbsp;&nbsp;edit&nbsp;&nbsp;&nbsp;</button>
 					<dialog id="modal-multi-${props.key}" class="modal-multi">
-						<span class="mm-top"><h1>${props.key}</h1><button class="modal-multi-close rb-button">Done</button></span>
+						<span class="mm-top">
+							<h1>${props.key}</h1>
+							<button class="modal-multi-close rb-button">done (save later)</button>
+							<button class="modal-multi-close2 rb-button">save settings & close</button>
+						</span>
 						${!!props.desc && props.desc !== "" ? `<p class="mm-desc">${props.desc.replaceAll("\n", '<br>')}</p>` : ''}
 						<textarea class="rb-input s-update" name="${props.key}" autocomplete="off">${props.value ?? ""}</textarea>
 					</dialog>
@@ -217,6 +221,7 @@ class SettingElem {
 		if (this.type === 'modal-multi') {
 			w.querySelector(".modal-multi-open").onclick = function() { this.nextElementSibling.showModal() };
 			w.querySelector(".modal-multi-close").onclick = () => document.getElementById(`modal-multi-${this.props.key}`).close();
+			w.querySelector(".modal-multi-close2").onclick = () => { saveSettings(); document.getElementById(`modal-multi-${this.props.key}`).close() }
 		}
 
 		if (this.type === 'sel') { w.querySelector('select').value = this.props.value } //select value applying is fucky so like fix it i guess

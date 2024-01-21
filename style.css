@@ -577,6 +577,7 @@ dialog.modal-multi {
 }
 .modal-multi h1 {
     margin: 0;
+	grid-column: 1/3;
 }
 dialog.modal-multi textarea {
 	resize: vertical;
@@ -586,7 +587,9 @@ dialog.modal-multi textarea {
 }
 dialog.modal-multi .mm-top {
 	color: var(--main-text-color);
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: .25rem;
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: .5rem;
