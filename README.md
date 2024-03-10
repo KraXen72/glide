@@ -24,7 +24,7 @@ you can also install this in firefox or any browser, just set the ``index.html``
 
 ### installation (firefox based browsers)
 > [!NOTE]
-> This extension will currently only work for Firefox ESR, Developer Edition, Nightly or Floorp (and othe firefox-based browsers) - [Reasoning](https://support.mozilla.org/en-US/kb/add-on-signing-in-firefox?as=u)
+> This extension will currently only work for Firefox ESR, Developer Edition, Nightly or Floorp (and othe firefox-based browsers) - [Reasoning](https://support.mozilla.org/en-US/kb/add-on-signing-in-firefox?as=u)  
 > It will not work in normal Firefox Stable! This is planned for the future.
   
 1. First, download this repository as a .zip file or zip the contents of the repository if you cloned it.
