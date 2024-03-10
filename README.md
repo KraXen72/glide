@@ -23,11 +23,14 @@ just clone this repo and load unpacked extension. (you have to enable developer 
 you can also install this in firefox or any browser, just set the ``index.html`` to your new tab page / create an addon which replaces the new tab page with this ``index.html``
 
 ### installation (firefox based browsers)
-First, download this repository as a .zip file.
-
-In Firefox open Settings > Extension & Themes. 
-
-Click on the settings icon at the top and choose "Install Add-on from file..." and choose the .zip file. Firefox will warn you that the extension is unsafe (due to it being unverified), but it is safe to use.
+> [!NOTE]
+> This extension will currently only work for Firefox ESR, Developer Edition, Nightly or Floorp (and othe firefox-based browsers) - [Reasoning](https://support.mozilla.org/en-US/kb/add-on-signing-in-firefox?as=u)
+> It will not work in normal Firefox Stable! This is planned for the future.
+  
+1. First, download this repository as a .zip file or zip the contents of the repository if you cloned it.
+2. In Firefox open `Settings` > `Extension & Themes`. 
+3. Click on the settings icon at the top and choose "Install Add-on from file..." and choose the .zip file. 
+4. Firefox will warn you that the extension is unsafe (due to it being unverified), but it is safe to use.
 
 ### custom images
 if you want a custom image, put it in the ``img`` folder.
