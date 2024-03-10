@@ -17,12 +17,13 @@
 - click bottom left ⚙ to open the settings popup 
   
 ### installation (chrome / chromium)
-I included a simple ``manifest.json`` so you can import it as a chrome extension.  
-just clone this repo and load unpacked extension. (you have to enable developer mode)    
+1. Clone this repo / download the zip and unzip it
+2. go to `chrome://extensions` and enable developer mode (top right)
+3. Click `Load unpacked` and select the folder which has a `manifest.json` file in it
+4. If there are some warnings/errors, but the new tab works, ignore them.
 ![unpacked](screenshots/unpacked.png)  
-you can also install this in firefox or any browser, just set the ``index.html`` to your new tab page / create an addon which replaces the new tab page with this ``index.html``
 
-### installation (firefox based browsers)
+### installation (firefox-based browsers)
 > [!NOTE]
 > This extension will currently only work for Firefox ESR, Developer Edition, Nightly or Floorp (and othe firefox-based browsers) - [Reasoning](https://support.mozilla.org/en-US/kb/add-on-signing-in-firefox?as=u)  
 > It will not work in normal Firefox Stable! This is planned for the future.
@@ -31,6 +32,12 @@ you can also install this in firefox or any browser, just set the ``index.html``
 2. In Firefox open `Settings` > `Extension & Themes`. 
 3. Click on the settings icon at the top and choose "Install Add-on from file..." and choose the .zip file. 
 4. Firefox will warn you that the extension is unsafe (due to it being unverified), but it is safe to use.
+
+> [!NOTE]  
+> Firefox has gone out of their way to make setting a local html file as a new tab page as hard as possible
+> - Unsigned extensions are not supported, and even if signed, you'd have to re-package & sign it a lot if you change the images folder
+> - Since version 41 or something, they removed `browser.newtab.url` from `about:config`, which was an easy way to set a custom new tab
+> - Extensions like [New Tab Override](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/) are still crippled by the fact that firefox doesen't allow `file://` (local files) url's to be set as a new tab - you'd have to host the extension online (won't work without internet connection), or run a local server, which is *absolutely ridiculous*
 
 ### custom images
 if you want a custom image, put it in the ``img`` folder.
