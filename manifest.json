@@ -1,32 +1,17 @@
 {
   "manifest_version": 3,
-  "name": "minimal-startpage",
-  "short_name": "minimal-startpage",
-  "version": "2.0",
-  "description": "Overrides the browsers newtab page with a rosebox minimal-startpage.",
+  "name": "glide startpage",
+  "short_name": "glide",
+  "version": "2.1",
+  "description": "Overrides the browsers newtab page with glide, a rosebox startpage.",
   "icons": {
     "64": "img/icon64.png"
   },
-
-  "author": "kraxen72",
+  "author": "KraXen72",
   "permissions": ["storage"],
-  "content_scripts": [
-    {
-      "matches": ["*://*.mozilla.org/*"],
-      "js": [
-        "main.js",
-        "settings.js",
-        "circle-assign.js",
-        "observe.js",
-        "sortable.js",
-        "tinydate.js"
-      ],
-      "css": ["style.css", "layout.css"]
-    }
-  ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "minimal@example.com"
+      "id": "glide@kraxen72.com"
     }
   },
   "chrome_url_overrides": {
