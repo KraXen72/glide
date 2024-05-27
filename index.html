@@ -37,8 +37,13 @@
 
 			<p>Here you can import and export backups. They will get exported in json. Backups contain links and all
 				settings.</p><br>
-			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button" id="import-json">import backup</button></span>
-			<span class="impexp-span"><input type="text" class="rb-input impexp-span"><button class="rb-button" id="export-json">export backup</button></span>
+			<div class="imp-ext-grid">
+				<input type="text" class="rb-input impexp-span" id="json-import-inp">
+				<button class="rb-button" id="import-json">import backup</button>
+				<input type="text" class="rb-input impexp-span" id="json-export-inp">
+				<button class="rb-button" id="export-json">export backup</button>
+				<button class="rb-button" id="export-json-file">download backup</button>
+			</div>
 		</div>
 		<div id="links-screen">
 			<div id="link-settings" draggable="false">
