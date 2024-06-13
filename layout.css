@@ -63,14 +63,23 @@
 .container.verdana .links,
 .container.verdana .title,
 .container.verdana .search, 
+.container.verdana .search input,
+.container.verdana h1,
+.container.verdana h1.title {
+	/* dont tell anybody that this isn't actually verdana lmao it doesen't look that good on linux*/
+	font-family: Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif;
+	font-weight: normal;
+}
+
+.container.verdana .links,
+.container.verdana .title,
+.container.verdana .search, 
 .container.verdana .search input {
-    font-family: Verdana,sans-serif;
 	font-size: 20px;
 	line-height: 1.5;
 }
 .container.verdana .links {
 	padding: 0;
-	/*margin: 0 0 0 1rem ;*/
 }
 .container.verdana .search, 
 .container.verdana .search input {
@@ -85,8 +94,7 @@
     padding: 0.3rem;
 }
 .container.verdana h1,
-.container.verdana h1.title {
-	font-family: "Segoe UI",Arial,sans-serif;
+.container.verdana h1.title {	
 	font-size: 36px;
     font-weight: 400;
 	color: var(--main-text-color-secondary);
