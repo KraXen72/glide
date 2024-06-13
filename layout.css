@@ -59,16 +59,17 @@
 }
 .container.cols-2 .col.third-col { display: none; }
 
-/* verdana */
-.container.verdana .links,
+/* 
+previously called verdana, now the 'alternate font' setting
+not renaming it to still support old backups 
+*/
+.container.verdana .links .link-text,
 .container.verdana .title,
 .container.verdana .search, 
 .container.verdana .search input,
 .container.verdana h1,
 .container.verdana h1.title {
-	/* dont tell anybody that this isn't actually verdana lmao it doesen't look that good on linux*/
 	font-family: Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif;
-	font-weight: normal;
 }
 
 .container.verdana .links,

@@ -58,6 +58,7 @@ Any donations are highly appreciated! <3
 
 ### thanks to:
 - [this startpage](https://github.com/WahyuHidayattz/startpage-new) for inspiration & original html/css boilerplate  
+- [lucide icon pack](https://github.com/lucide-icons/lucide) for nice icons for settings and toggle image
 - image `floccinauci.jpg` - album cover of Floccinaucinihilipilification (feat. Grim Salvo)  
 - images/reze, images/yoruasa screenshots from chainsawman, (edited by me) found online  
 - images from "Smoking with you behind the supermarket" manga, found online

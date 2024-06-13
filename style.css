@@ -656,6 +656,8 @@ input:checked + .slider:before {
 }
 .rb-button,
 .rb-input {
+	font-family: Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif;
+	font-weight: normal;
 	outline: 0px transparent !important;
 }
 .rb-button:hover {
