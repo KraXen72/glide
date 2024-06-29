@@ -69,7 +69,7 @@ not renaming it to still support old backups
 .container.verdana .search input,
 .container.verdana h1,
 .container.verdana h1.title {
-	font-family: Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif;
+	font-family: 'Noto Sans', Optima, Candara, source-sans-pro, sans-serif;
 }
 
 .container.verdana .links,
