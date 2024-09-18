@@ -68,6 +68,8 @@ if (typeof ls_settings !== 'undefined' && ls_settings !== null) {
  * creates a new Setting element
  */
 class SettingElem {
+	/** @type {HTMLElement} */
+	#elem;
   //s-update is the class for element to watch
   constructor(props) {
     /**@type {String} is the key to get checked when writing an update, for checkboxes it's checked, for selects its value etc.*/
@@ -86,6 +88,7 @@ class SettingElem {
     this.optType = ''
     /** @type {Function | 'misc' | 'normal'} custom callback for update function. 'misc' is for misc settings if nothing then default is 'normal' */
     this.updateCallback = props.updateCallback || 'normal'
+		this.#elem = null;
 
     const descElem = (cls = "") => (!!props.desc && props.desc !== "") ? `<span class="setting-desc ${cls}" title="${props.desc}">?</span>` : ""
     const inlineDescElem = () => descElem("inline")
@@ -206,13 +209,8 @@ class SettingElem {
     }
   }
 
-  /**
-   * this initializes the element and its eventlisteners. 
-   * @returns {Element}
-  */
-  get elem() {
-    // i only create the element after .elem is called so i don't pollute the dom with virutal elements when making settings
-    let w = document.createElement('div') //w stands for wrapper
+	#createElement() {
+		let w = document.createElement('div') //w stands for wrapper
     w.classList.add("setting")
     w.id = `settingElem-${this.props.key}`
     w.classList.add(this.type) //add bool or title etc
@@ -232,7 +230,17 @@ class SettingElem {
         this.update = { elem: w, callback: this.updateCallback }
       }
     }
-    return w //return the element
+		this.#elem = w;
+	}
+
+  /**
+   * this initializes the element and its eventlisteners. 
+   * @returns {Element}
+  */
+  get elem() {
+    // i only create the element after .elem is called so i don't pollute the dom with virutal elements when making settings
+    if (this.#elem === null) { this.#createElement() }
+		return this.#elem;
   }
 }
 /**
