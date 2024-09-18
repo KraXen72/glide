@@ -29,6 +29,7 @@
 	background-color: var(--main-card-background);
 	border-radius: var(--border-radius);
 	margin: var(--margin-row) var(--margin-col);
+	max-width: var(--grid-colwrap-width);
 }
 .container.connect.nogreeting:not(.leftpic) .first-col { border-top-left-radius: var(--border-radius); }
 .container.connect.nogreeting.cols-3 .third-col { border-top-right-radius: var(--border-radius) }
