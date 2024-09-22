@@ -23,6 +23,10 @@
 /*thicc & slim - cancel each other out*/
 /*.container.thicc.slim { --maxwidth: 40rem; }*/
 
+.container .colwrap {
+	max-width: var(--grid-colwrap-width, unset);
+}
+
 /*connect*/
 .container.connect { --margin-col: 0px; }
 .container.connect .colwrap {

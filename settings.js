@@ -6,7 +6,7 @@ const settings = {
     { title: `Compact links`, desc: `make links not take up as much space`, type: 'bool', key: 'compact', classes: ['compact', ''] },
     { title: `Move Image to left`, desc: `Move image to left instead of top.`, type: 'bool', key: 'leftpic', classes: ['leftpic', ''] },
     { title: `Portrait left image`, desc: `force (358*279.72px) image aspect ratio, good for manga/movie cover`, type: 'bool', key: 'tallpic', classes: ['tallpic', ''] },
-    { title: `Container width (rem)`, desc: `set the container thickness. default is 40rem`, type: 'num', optType: 'Number', key: 'width', min: 32, max: 65 },
+    { title: `Container width (rem)`, desc: `set the container width. default is 40rem`, type: 'num', optType: 'Number', key: 'width', min: 32, max: 65 },
     { title: `Number of columns`, desc: `How many columns to show: either 2 or 3`, type: 'sel', optType: 'Number', opts: [3, 2], key: 'cols', classes: ['cols-3', 'cols-2'] },
     { title: `Clock style`, desc: `Which clock style to use: Hidden, Side, Greeting (needs visible title)`, type: 'sel', optType: 'String', opts: ["noclock", "side", "greeting"], key: "clocktype" },
     { title: `Greeting style`, desc: '', key: 'greetingtype', type: 'sel', opts: ['nogreeting', 'greeting', 'greeting+date', 'date'], optType: 'String', desc: "what type of greeting to use (or none)" },
@@ -24,6 +24,7 @@ const settings = {
     { title: `1st column title:`, key: 'col1Title', type: 'text', updateCallback: 'misc', value: 'links' },
     { title: `2nd column title:`, key: 'col2Title', type: 'text', updateCallback: 'misc', value: 'social' },
     { title: `3rd column title:`, key: 'col3Title', type: 'text', updateCallback: 'misc', value: 'other' },
+		{ title: `Column wrapper width (rem)`, desc: `set the colwrap width. default is 0 (unlimited)`, type: 'num', optType: 'Number', key: 'colwrapwidth', min: 0 },
     { title: `image path:`, key: 'imgPath', type: 'text', updateCallback: 'misc', desc: 'for best results with "portrait image", scale your images to width=563px or width=358px in gimp.' },
     { title: `additional images (1 per line):`, key: 'imgGallery', type: 'modal-multi', updateCallback: 'misc', desc: "&bull; 1 image per line. Each time an image will be randomly selected.\n&bull; To turn off imgGallery without deleting the images from here, set the first line to '--off--'" },
     { title: `cycle images in order`, key: 'cycleExtraImg', type: 'bool', updateCallback: 'misc', desc: `By default, Additional images get randomly cycled. Enabling this will cycle them in-order.` }

@@ -6,6 +6,7 @@ let containerObj = {
 		connect: false, //.connect: connects links together
 		compact: false, //.compact: make links compact
 		width: 40, //max container width. 32 - 65rem
+		colwrapwidth: 0,
 		cols: 3, //.cols-2 || .cols-3: show either 1,2,3 or just 1,2 columns
 		greetingtype: 'greeting', // greeting, nogreeting, greeting+date
 		dateformat: '{wn}, {mm}. {Mn}', // default date format
@@ -122,7 +123,14 @@ Container.observe(changes => {
 				containerElem.classList = _cl.join(" ") //reconstruct classlists
 
 			} else if (key === "width") {
-				document.getElementById('styles').innerHTML = `:root{--maxwidth:${change.value || 40}rem;}`
+				document.documentElement.style.setProperty('--maxwidth', `${change.value || 40}rem`);
+			} else if (key === "colwrapwidth") {
+				console.log(change.value);
+				if (change.value !== 0) {
+					document.documentElement.style.setProperty('--grid-colwrap-width', `${change.value}rem`);
+				} else {
+					document.documentElement.style.removeProperty('--grid-colwrap-width');
+				}
 			} else if (key === "dateformat") {
 				updateDate(change.value)
 			} else {
@@ -210,9 +218,6 @@ class LinkElem {
 
 	}
 
-	/**
-	 * get the link element
-	 */
 	get elem() {
 		return this.w
 	}
@@ -253,8 +258,6 @@ const loadConstraints = {
 	}
 }
 
-//DONE instantly update classlist from json, not through this for loop - save classList and Container separately
-
 document.addEventListener('DOMContentLoaded', () => {
 	function showHideSettings() {
 		toggleElem('settings-screen-left');
@@ -282,16 +285,22 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (typeof ls_classList !== 'undefined' && ls_classList !== null) {
 		console.log("found data in localStorage, loading classList: ", ls_classList)
 		containerElem.classList = ls_classList
-
 	}
 	loadConstraints.layoutHasApplied = true;
 	loadConstraints.check()
 
-	document.getElementById('styles').innerHTML = `:root{--maxwidth:${Container.p.width}rem;}`
+	document.documentElement.style.setProperty('--maxwidth', `${Container.p.width || 40}rem`);
+	if (Container.p.colwrapwidth !== 0) {
+		document.documentElement.style.setProperty('--grid-colwrap-width', `${Container.p.colwrapwidth}rem`);
+	}
+
 	updateClock()
 	initlinks()
 	initsettings()
-	Object.keys(Container.m).forEach(key => { miscUpdate(key, Container.m[key], false) }) //this should reflect the values from settings
+
+	for (const key of Object.keys(Container.m)) {
+		miscUpdate(key, Container.m[key], false)
+	}
 })
 
 function initlinks() {
@@ -442,19 +451,19 @@ function miscUpdate(what, value, genuine = true) {
 		case "customfont":
 			{
 				let ff = `
-								@font-face {
-										font-family: "Customfont";
-										src: url('fonts/${value}') format('woff');
-								}
-								.container .links,
-								.container .title,
-								.container .search, 
-								.container .search input {
-										font-family: Customfont,Verdana,sans-serif !important;
-										font-size: 20px;
-										line-height: 1.5;
-								}
-								`
+					@font-face {
+							font-family: "Customfont";
+							src: url('fonts/${value}') format('woff');
+					}
+					.container .links,
+					.container .title,
+					.container .search, 
+					.container .search input {
+							font-family: Customfont,Verdana,sans-serif !important;
+							font-size: 20px;
+							line-height: 1.5;
+					}
+				`
 				document.getElementById("customfont").innerHTML = typeof value !== "undefined" && value !== '' ? ff : ''
 			}
 			break;

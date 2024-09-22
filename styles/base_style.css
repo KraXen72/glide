@@ -5,18 +5,17 @@
 	font-family: "Cascadia";
 	src: url("fonts/CascadiaMono.woff2") format("woff");
 }
-:root {
-	/*
-  --main-background: #1e222a;
-  --main-card-background: #282c34;
-  --main-card-bg-secondary: #363b46;
-  --main-text-color: #dddddd;
-  --main-text-color-secondary: #aaaaaa;
-  --main-accent: #536785;
-  --main-accent-secondary: #536785;
-	*/
-	/*rosebox*/
 
+:root {
+	--main-background: #1e222a;
+	--main-card-background: #282c34;
+	--main-card-bg-secondary: #363b46;
+	--main-text-color: #dddddd;
+	--main-text-color-secondary: #aaaaaa;
+	--main-accent: #536785;
+	--main-accent-secondary: #536785;
+	
+	/*rosebox*/
 	--main-background: #222222;
 	--main-card-background: #262626;
 	--main-card-bg-secondary: #303030;
