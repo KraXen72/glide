@@ -3,17 +3,17 @@
 
 @font-face {
 	font-family: "Cascadia";
-	src: url("fonts/CascadiaMono.woff2") format("woff");
+	src: url("../fonts/CascadiaMono.woff2") format("woff");
 }
 
 :root {
-	--main-background: #1e222a;
+	/* --main-background: #1e222a;
 	--main-card-background: #282c34;
 	--main-card-bg-secondary: #363b46;
 	--main-text-color: #dddddd;
 	--main-text-color-secondary: #aaaaaa;
 	--main-accent: #536785;
-	--main-accent-secondary: #536785;
+	--main-accent-secondary: #536785; */
 	
 	/*rosebox*/
 	--main-background: #222222;
@@ -21,10 +21,13 @@
 	--main-card-bg-secondary: #303030;
 	--main-text-color: rgba(255, 255, 255, 0.8);
 	--main-text-color-secondary: #a3a5aa;
+	--main-text-color-tertiary: #4f4f50;
 	--main-accent: #a57562;
 	--main-accent-secondary: rgba(165, 117, 98, 0.2);
+	--main-accent-bg: #5e4c44;
 
-	--green: #98c379;
+	/* --green: #98c379; */
+	--green: #66bb6a;
 	--cyan: #61afef;
 	--red: #e06c75;
 
@@ -53,16 +56,27 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-family: "Roboto", sans-serif;
-	font-size: 0.9rem;
 	margin: 0;
 	padding: 0;
 	height: 100%;
 	min-height: 100vh;
 
 	overflow-x: hidden;
+} 
+
+/* fonts */
+body {
+	font-family: "Roboto", sans-serif;
+	font-size: 0.9rem;
+}
+.rb-button,
+.rb-input {
+	font-family: 'Noto Sans', Optima, Candara, source-sans-pro, sans-serif;
+	font-weight: normal;
+	outline: 0px transparent !important;
 }
 
+/* util classes */
 .hidden {
 	display: none !important;
 }
@@ -79,8 +93,12 @@ body {
 	display: flex;
 	align-items: center;
 }
-
-
+.fade {
+	transition: opacity 3s ease-in-out;
+}
+.invis {
+	opacity: 0;
+}
 
 /*settings*/
 #settings-screen-left,
@@ -163,11 +181,6 @@ body {
 	color: var(--main-text-color-secondary);
 }
 .setting:not(.heading)[hidden] { display: none; }
-/* .setting.textarea {
-	height: min-content;
-	align-items: flex-start;
-	min-width: 169px;
-} */
 .setting .setting-title {
 	width: 100%;
 	font-size: 1.2rem;
@@ -200,6 +213,7 @@ body {
 	margin: 0 0.5rem;
 	font-size: 1rem;
 }
+/* settings - import export */
 .impexp-span {
 	width: 100%;
 	display: flex;
@@ -219,7 +233,7 @@ body {
 #export-json { grid-area: export-btn1; }
 #export-json-file { grid-area: export-btn2; }
 
-/*settings link stuff*/
+/*settings: links, sortable*/
 #sortable-colwrap {
 	display: grid;
 	grid-template: 1fr / repeat(3, 1fr);
@@ -293,12 +307,6 @@ body {
 	float: right;
 	color: gray;
 	font-weight: bold;
-}
-.fade {
-	transition: opacity 3s ease-in-out;
-}
-.invis {
-	opacity: 0;
 }
 
 .sortable-col .links-ghost {
@@ -385,7 +393,7 @@ header img:active {
 
 	font-family: "Cascadia";
 	font-weight: 300;
-	color: #a3a5aa;
+	color: var(--main-text-color-secondary);
 
 	display: flex;
 	justify-content: center;
@@ -472,7 +480,8 @@ h1.greeting {
 	margin: var(--margin-row) var(--margin-col);
 }
 
-.first-col {
+/* not necessary i think */
+/* .first-col {
 	grid-area: col1;
 }
 .second-col {
@@ -480,7 +489,7 @@ h1.greeting {
 }
 .third-col {
 	grid-area: col3;
-}
+} */
 
 .col:hover {
 	border: var(--border-size) solid var(--green);
@@ -535,7 +544,7 @@ h1.greeting .accent { padding-right: 0; line-height: initial; }
 	right: 0;
 	background: transparent;
 	border: none;
-	color: #a3a5aa;
+	color: var(--main-text-color-secondary);
 	outline: 0px transparent;
 	transition: color 0.05s;
 	user-select: none;
@@ -546,7 +555,7 @@ h1.greeting .accent { padding-right: 0; line-height: initial; }
 .settings:active {
 	background: transparent;
 	border: none;
-	color: #4f4f50;
+	color: var(--main-text-color-tertiary);
 }
 .settings {
 	left: 0;
@@ -637,7 +646,7 @@ select.s-update {
 	width: 26px;
 }
 input:checked + .slider {
-	background-color: #66bb6a;
+	background-color: var(--green);
 }
 input:checked + .slider:before {
 	transform: translateX(calc(26px * 0.7));
@@ -647,17 +656,11 @@ input:checked + .slider:before {
 /*rosebox buttons and inputs*/
 .rb-button {
 	box-sizing: border-box;
-	background-color: #5e4c44;
+	background-color: var(--main-accent-bg);
 	border-color: var(--main-accent);
 	border-radius: calc(var(--border-radius) / 2);
 	border-style: solid;
-	color: #a3a5aa;
-}
-.rb-button,
-.rb-input {
-	font-family: 'Noto Sans', Optima, Candara, source-sans-pro, sans-serif;
-	font-weight: normal;
-	outline: 0px transparent !important;
+	color: var(--main-text-color-secondary);
 }
 .rb-button:hover {
 	opacity: 0.9;
@@ -667,12 +670,12 @@ input:checked + .slider:before {
 }
 .rb-input {
 	box-sizing: border-box;
-	background-color: #232323;
+	background-color: var(--main-background);
 	border-color: var(--main-accent);
 	border-radius: calc(var(--border-radius) / 2);
 	border-style: solid;
 	border-width: 2px;
-	color: #a3a5aa;
+	color: var(--main-text-color-secondary);
 }
 
 /* mobile screen */
