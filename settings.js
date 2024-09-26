@@ -164,7 +164,7 @@ class SettingElem {
         break;
       case 'num':
         this.HTML = `<span class="setting-title">${props.title}</span>
-        <span><input type="number" class="rb-input marright s-update" name="${props.key}" autocomplete="off" value="${props.value}" min="${props.min ?? -1}" max="${props.max ?? 1000}"></span>${descElem()}`
+        <span><input type="number" class="rb-input s-update" name="${props.key}" autocomplete="off" value="${props.value}" min="${props.min ?? -1}" max="${props.max ?? 1000}"></span>${descElem()}`
         this.mutable = true
         this.updateKey = `value`
         this.updateMethod = `onchange`

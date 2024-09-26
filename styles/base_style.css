@@ -7,36 +7,27 @@
 }
 
 :root {
-	/* --main-background: #1e222a;
+	--main-background: #1e222a;
 	--main-card-background: #282c34;
 	--main-card-bg-secondary: #363b46;
 	--main-text-color: #dddddd;
 	--main-text-color-secondary: #aaaaaa;
 	--main-accent: #536785;
-	--main-accent-secondary: #536785; */
-	
-	/*rosebox*/
-	--main-background: #222222;
-	--main-card-background: #262626;
-	--main-card-bg-secondary: #303030;
-	--main-text-color: rgba(255, 255, 255, 0.8);
-	--main-text-color-secondary: #a3a5aa;
-	--main-text-color-tertiary: #4f4f50;
-	--main-accent: #a57562;
-	--main-accent-secondary: rgba(165, 117, 98, 0.2);
-	--main-accent-bg: #5e4c44;
+	--main-accent-secondary: #536785;
 
-	/* --green: #98c379; */
 	--green: #66bb6a;
 	--cyan: #61afef;
 	--red: #e06c75;
 
-	--border-radius: 7.5px;
+	/* --border-radius: 7.5px; */
+	--border-radius: 5px;
 	--border-size: 0px;
 
 	--margin-col: 10px;
 	--margin-row: 10px;
 	--spacer: 1.5rem;
+	--spacer-mini: 4px;
+	--slider-size: 16px;
 
 	--pic-w-orig: 563px;
 	--pic-h-orig: 720px;
@@ -167,8 +158,9 @@ body {
 	bottom: 0.7rem;
 	position: sticky;
 }
-.hook-close-btn,
-.hook-save-btn {
+button.hook-close-btn,
+button.hook-save-btn {
+	background-color: var(--main-background);
 	position: relative;
 	margin-left: 0.5rem;
 	padding: 0.5rem;
@@ -176,6 +168,7 @@ body {
 .setting:not(.heading) {
 	width: 100%;
 	display: flex;
+	column-gap: calc(var(--spacer-mini) * 2);
 	align-items: center;
 	height: 30px;
 	color: var(--main-text-color-secondary);
@@ -193,14 +186,17 @@ body {
 	margin-bottom: 0.9rem;
 }
 .setting .setting-desc {
+	box-sizing: content-box;
 	border: 2px solid var(--main-accent-secondary);
 	color: var(--main-text-color);
 	background: var(--main-accent-secondary);
 	opacity: 0.7;
 	cursor: pointer;
-	border-radius: 100px;
-	height: calc(34px * 0.7);
-	width: calc(34px * 0.7);
+	/* border-radius: 100px; */
+	border-radius: var(--border-radius);
+	height: calc(2 * var(--spacer-mini) + var(--slider-size) - 4px);
+	width: min-content;
+	padding-inline: .3rem;
 
 	display: flex;
 	justify-content: center;
@@ -209,7 +205,7 @@ body {
 .setting .setting-desc.inline {
 	height: 100%;
 	max-height: 100%;
-	line-height: 100%;
+	line-height: 1.5;
 	margin: 0 0.5rem;
 	font-size: 1rem;
 }
@@ -306,7 +302,7 @@ body {
 #savedmsg {
 	float: right;
 	color: gray;
-	font-weight: bold;
+	font-weight: normal;
 }
 
 .sortable-col .links-ghost {
@@ -569,26 +565,6 @@ h1.greeting .accent { padding-right: 0; line-height: initial; }
 	opacity: 1;
 }
 
-/*slider & select ig*/
-.switch {
-	display: inline-block;
-	height: 34px;
-	position: relative;
-	width: 60px;
-	transform: scale(0.7);
-}
-select.s-update {
-	width: 50px;
-	font-size: 1.5rem;
-	font-weight: bold;
-	color: black;
-	mix-blend-mode: difference;
-}
-
-.switch input[type="checkbox"] {
-	display: none;
-}
-
 dialog.modal-multi {
 	background: var(--main-background);
     margin: none;
@@ -621,35 +597,71 @@ dialog.modal-multi .mm-desc {
 	width: 25rem;
 }
 
-.slider { border-radius: 100px; }
+/*slider & select ig*/
+.switch {
+	box-sizing: border-box;
+	display: inline-block;
+	/* height: 34px; */
+	position: relative;
+	right: 0;
+	height: calc(2 * var(--spacer-mini) + var(--slider-size));
+	min-width: calc(2 * var(--spacer-mini) + 2 * var(--slider-size));
+}
+.switch:has(.slider) {
+	width: calc(2 * var(--spacer-mini) + 2 * var(--slider-size));		
+}
+.switch input[type="checkbox"] {
+	display: none;
+}
+
+/* .slider { border-radius: 100px; } */
+.slider { border-radius: var(--border-radius); };
 select.s-update { border-radius: calc(var(--border-radius) / 2); }
 .slider,
 select.s-update {
-	background-color: var(--main-text-color-secondary);
-	bottom: 0;
-	cursor: pointer;
-	left: 0;
+	box-sizing: border-box;
 	position: absolute;
-	right: 0;
 	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: calc(2 * var(--spacer-mini) + 2 * var(--slider-size));
+	background-color: var(--main-text-color-secondary);
+	border-radius: var(--border-radius);
 	transition: 0.4s;
+	cursor: pointer;
 }
-.slider:before {
+.slider::before {
+	box-sizing: border-box;
 	background-color: var(--main-text-color);
-	border-radius: 100px;
-	bottom: 4px;
+	border-radius: calc(var(--border-radius) / 2);
+	bottom: var(--spacer-mini);
 	content: "";
-	height: 26px;
-	left: 4px;
+	height: var(--slider-size);
+	width: var(--slider-size);
+	left: var(--spacer-mini);
 	position: absolute;
 	transition: 0.4s;
-	width: 26px;
 }
 input:checked + .slider {
 	background-color: var(--green);
 }
 input:checked + .slider:before {
-	transform: translateX(calc(26px * 0.7));
+	transform: translateX(calc(var(--slider-size)));
+}
+
+/* select */
+select.s-update {
+	/* font-size: 1rem; */
+	color: black;
+	background-color: var(--main-background);
+	border-color: var(--main-accent);
+	border-width: 2px;
+	color: var(--main-text-color-secondary);
+	
+	font-size: 0.95rem;
+
+	/* mix-blend-mode: difference; */
 }
 
 /*buttons and inputs*/
@@ -658,7 +670,8 @@ input:checked + .slider:before {
 	box-sizing: border-box;
 	background-color: var(--main-accent-bg);
 	border-color: var(--main-accent);
-	border-radius: calc(var(--border-radius) / 2);
+	/* border-radius: calc(var(--border-radius) / 2); */
+	border-radius: var(--border-radius);
 	border-style: solid;
 	color: var(--main-text-color-secondary);
 }
@@ -672,18 +685,11 @@ input:checked + .slider:before {
 	box-sizing: border-box;
 	background-color: var(--main-background);
 	border-color: var(--main-accent);
-	border-radius: calc(var(--border-radius) / 2);
+	/* border-radius: calc(var(--border-radius) / 2); */
+	border-radius: var(--border-radius);
 	border-style: solid;
 	border-width: 2px;
 	color: var(--main-text-color-secondary);
-}
-
-/* mobile screen */
-
-@media screen and (max-width: 700px) {
-	header img {
-		display: none;
-	}
 }
 
 .help-table, .help-table tr, .help-table td, .help-table th {
@@ -692,4 +698,32 @@ input:checked + .slider:before {
 }
 .help-table td {
 	padding: 0.2rem;
+}
+
+/* mobile screen */
+@media screen and (max-width: 700px) {
+	header img {
+		display: none;
+	}
+}
+
+:is(body, #settings-screen-left, #settings-screen-right)::-webkit-scrollbar {
+	width: 1rem;
+}
+
+:is(body, #settings-screen-left, #settings-screen-right)::-webkit-scrollbar-track {
+	background: var(--main-card-background);
+	border-radius: 5px;
+}
+
+:is(body, #settings-screen-left, #settings-screen-right)::-webkit-scrollbar-thumb {
+	background: var(--main-accent);
+	border-radius: 5px;
+	border: 2px solid var(--main-card-background);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+	:is(body, #settings-screen-left, #settings-screen-right) {
+		scrollbar-color: var(--main-accent) var(--main-card-background);
+	}
 }

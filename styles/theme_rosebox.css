@@ -1,0 +1,12 @@
+:root {
+	/*rosebox*/
+	--main-background: #222222;
+	--main-card-background: #262626;
+	--main-card-bg-secondary: #303030;
+	--main-text-color: rgba(255, 255, 255, 0.8);
+	--main-text-color-secondary: #a3a5aa;
+	--main-text-color-tertiary: #4f4f50;
+	--main-accent: #a57562;
+	--main-accent-secondary: rgba(165, 117, 98, 0.2);
+	--main-accent-bg: #5e4c44;
+}		
