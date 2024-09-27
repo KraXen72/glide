@@ -1,0 +1,38 @@
+:root {
+	--flexoki-bg:      #100F0F;
+	--flexoki-bg-2:    #1C1B1A;
+	--flexoki-ui:      #282726;
+	--flexoki-ui-2:    #343331;
+	--flexoki-ui-3:    #403E3C;
+	--flexoki-tx-3:    #575653;
+	--flexoki-tx-2:    #878580;
+	--flexoki-tx:      #CECDC3;
+	
+	--flexoki-red:     #D14D41;
+	--flexoki-orange:  #DA702C;
+	--flexoki-yellow:  #D0A215;
+	--flexoki-green:   #879A39;
+	--flexoki-cyan:    #3AA99F;
+	--flexoki-blue:    #4385BE;
+	--flexoki-purple:  #8B7EC8;
+	--flexoki-magenta: #CE5D97;
+
+	/* i slightly customized it ok */
+	--main-background: var(--flexoki-bg);
+	--main-card-background: var(--flexoki-bg-2);
+	--main-card-bg-secondary: var(--flexoki-ui);
+	--main-text-color: var(--flexoki-tx);
+	--main-text-color-secondary: var(--flexoki-tx-2);
+	--main-text-color-tertiary: var(--flexoki-tx-3);
+	--main-accent: #3aa99f;
+	--main-accent-secondary: hsl(175, 35%, 45%); /* sat: 49 initially = --flexoki-cyan*/
+	--main-accent-bg: #254441;
+
+	--green: var(--flexoki-green);
+	--cyan: var(--flexoki-cyan);
+	--red: var(--flexoki-red);
+}
+
+.setting .setting-desc {
+	color: rgba(255, 255, 255, 0.9)
+}
