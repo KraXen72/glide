@@ -16,6 +16,6 @@ body {
 /* big dots */
 body { 
 	--dot-color: hsla(0, 0%, 35%, 15%);
-    --dot-spacing: 20x; 
+    --dot-spacing: 20px; 
     --dot-size: 2px;
 }
