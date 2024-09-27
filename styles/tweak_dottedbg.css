@@ -1,0 +1,21 @@
+body {
+	background-image: radial-gradient(circle,
+		var(--dot-color) var(--dot-size),
+		transparent var(--dot-size)
+	);
+	background-size: var(--dot-spacing) var(--dot-spacing);
+    background-attachment: local;
+}
+/*  small dots or big dots: uncomment 1 */
+/* small dots */
+/* body { 
+	--dot-color: hsla(0, 0%, 35%, 22.5%);
+    --dot-spacing: 12px; 
+    --dot-size: 1px;
+} */
+/* big dots */
+body { 
+	--dot-color: hsla(0, 0%, 35%, 15%);
+    --dot-spacing: 20x; 
+    --dot-size: 2px;
+}
