@@ -219,13 +219,30 @@ button.hook-save-btn {
 	grid-template-columns: 1fr repeat(2, min-content);
 	grid-template-rows: repeat(2, minmax(36px, 1fr));
 	grid-template-areas:
-		"import-inp import-btn import-btn"
+		"import-inp import-btn1 import-btn2"
 		"export-inp export-btn1 export-btn2";
 	gap: .25rem;
 }
-#import-json-file { grid-area: import-inp; }
-#export-json-file { grid-area: export-inp; }
-#import-json { grid-area: import-btn; }
+.imp-ext-grid .impexp-span,
+.imp-ext-grid .rb-button {
+	white-space: nowrap;
+}
+
+#import-json-inp { grid-area: import-inp; }
+#import-json { grid-area: import-btn1; }
+#import-json-file { 
+	grid-area: import-btn2; 
+	padding: .25rem;
+	max-width: 12.5rem;
+}
+#import-json-file::file-selector-button {
+	box-sizing: border-box;
+	color: var(--main-text-color-secondary);
+	background-color: var(--main-accent-secondary);
+	border: 2px solid var(--main-accent-secondary);
+	border-radius: calc(var(--border-radius) / 2);
+}
+#export-json-inp { grid-area: export-inp; }
 #export-json { grid-area: export-btn1; }
 #export-json-file { grid-area: export-btn2; }
 

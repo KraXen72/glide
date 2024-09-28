@@ -323,9 +323,18 @@ function initsettings() {
   [...document.getElementsByClassName('hook-save-btn')].forEach(btn => { btn.onclick = saveSettings })
 
   //backup
+  document.getElementById('import-json').onclick = importJson
+	document.getElementById("import-json-file").addEventListener("change", async (e) => {
+		const elem = e.target || e.currentTarget;
+		if (elem.files.length !== 1) return;
+		const jsonBackupUrl = URL.createObjectURL(elem.files[0]);
+		const res = await fetch(jsonBackupUrl)
+		const data = await res.text();
+		// console.log(data);
+		document.getElementById('json-import-inp').value = data;
+	});
   document.getElementById('export-json').onclick = exportJson
   document.getElementById('export-json-file').onclick = exportJsonFile
-  document.getElementById('import-json').onclick = importJson
 
   console.log("sucessfully generated settings")
 }
@@ -394,6 +403,9 @@ function serializeSortable(SortableElem) {
  * serialize links, container and classList, stringify and fill in the export input
  */
 function exportJson() {
+	// prevent desync between classlist and settings
+	// classlist updates automatically but Container object must be saved
+	saveSettings();
   let exportObj = { links: {}, Container: {}, classList: "", type: "valid-startpage-backup" }
 
   //add links
@@ -432,12 +444,23 @@ function exportJsonFile() {
  * import a valid string (stringified object) as settings + links, save to localstorage & refresh
  */
 function importJson() {
-  let input = document.getElementById('import-json').previousElementSibling
+  let input = document.getElementById('json-import-inp')
   try {
     let val = JSON.parse(input.value)
     if (val.type === "valid-startpage-backup") {
-      localStorage.setItem('links', JSON.stringify(val.links))
-      localStorage.setItem('Container', JSON.stringify(val.Container))
+			// circleAssign(cont, val.Container) // assign all values from backup
+			const cont = val.Container;
+			
+			// delete extra unrecognized keys
+			for (const key of Object.keys(cont.m)) {
+				if (!(key in containerObj.m)) { delete cont.m[key]; }
+			}
+			for (const key of Object.keys(cont.p)) {
+				if (!(key in containerObj.p)) { delete cont.p[key]; }
+			}
+			
+      localStorage.setItem('Container', JSON.stringify(cont))
+			localStorage.setItem('links', JSON.stringify(val.links))
       localStorage.setItem('classList', val.classList)
 
       window.location.reload()
@@ -449,5 +472,4 @@ function importJson() {
     alert("not a valid backup !")
     input.value = ""
   }
-
 }
