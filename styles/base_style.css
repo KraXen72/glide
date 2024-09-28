@@ -237,7 +237,7 @@ button.hook-save-btn {
 }
 #import-json-file::file-selector-button {
 	box-sizing: border-box;
-	color: var(--main-text-color-secondary);
+	color: rgba(255, 255, 255, 0.8);
 	background-color: var(--main-accent-secondary);
 	border: 2px solid var(--main-accent-secondary);
 	border-radius: calc(var(--border-radius) / 2);
