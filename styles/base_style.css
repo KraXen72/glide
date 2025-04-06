@@ -227,12 +227,16 @@ button.hook-save-btn {
 .imp-ext-grid .rb-button {
 	white-space: nowrap;
 }
+.imp-ext-grid .rb-input {
+	padding: 0.5rem 0.3rem;
+}
 
 #import-json-inp { grid-area: import-inp; }
 #import-json { grid-area: import-btn1; }
 #import-json-file { 
 	grid-area: import-btn2; 
-	padding: .25rem;
+	border-width: 2px;
+	padding: .325rem .25rem;
 	max-width: 12.5rem;
 }
 #import-json-file::file-selector-button {
@@ -302,8 +306,7 @@ button.hook-save-btn {
 }
 #add-link .rb-input {
 	width: 100%;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
+	padding: 0.5rem 0.3rem;
 }
 .add-link-top-wrap {
 	display: flex;
