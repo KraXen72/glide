@@ -5,3 +5,7 @@ img/i
 *.zip
 img/jinx_macka_out1.png
 img/reze/denreze.jpg
+img/tg/*
+img/tgre/*
+img/jinx/*
+*.bak

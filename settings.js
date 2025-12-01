@@ -53,6 +53,15 @@ const settings = {
     ]
   }
 }
+const datetimeFormatOptions = { 
+	year: 'numeric', 
+	month: 'numeric', 
+	day: 'numeric', 
+	hour: 'numeric', 
+	minute: 'numeric', 
+	second: 'numeric' 
+}
+
 var Sortables = []
 
 //update from localstorage here
@@ -429,13 +438,16 @@ function exportJson() {
 
 function exportJsonFile() {
   exportJson();
-  const today = new Date();
-  const [day, month, year] = today.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).split("/");
+	let [datestring, timestring] = new Intl.DateTimeFormat("en-GB", datetimeFormatOptions)
+		.format(new Date())
+		.split(", ");
+	datestring = datestring.split("/").reverse().join("-");
+
   const blob = new Blob([document.getElementById('json-export-inp').value], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `glide-${year}-${month}-${day}.json`;
+  a.download = `glide-${datestring}-${timestring}.json`;
   a.click();
   URL.revokeObjectURL(url);
 }
