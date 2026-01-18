@@ -528,13 +528,29 @@ h1.greeting {
 	color: var(--main-text-color-secondary);
 	cursor: pointer;
 	user-select: none;
+	/* transition: 
+		text-decoration-color 0.1s linear,
+		color 0.1s linear
+	; */
 
 	display: flex;
 	justify-content: flex-start;
 }
+/* .col .links:hover span.link-text {
+	text-decoration: underline;
+	text-decoration-skip-ink: all;
+	text-underline-offset: 2px;
+	color: var(--main-accent);
+} */
+
+.col .links {
+	transition: opacity 0.1s;
+}
 .col .links:hover {
 	opacity: 0.7;
-	transition: opacity 0.15s ease-in-out;
+}
+.col .links:hover:active {
+	opacity: 0.5;
 }
 .col .links * {
 	user-select: none;
